@@ -1,7 +1,7 @@
 # 代码模版
 
 ## html 
-JsonToCheckBox.html: 根据json格式信息自动生成checkbox
+JsonToCheckBox.html: 根据json格式信息自动生成checkbox  
 CenterContent.html: 居中显示内容
 
 ## html5
