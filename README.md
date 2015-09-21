@@ -8,7 +8,7 @@ JsonToCheckBox.html: 根据json格式信息自动生成checkbox
 CenterContent.html: 居中显示内容
 
 ## html5
-PrelaodImages.html: 预加载图片
+PrelaodImages.html: 预加载图片  
 FixCanvasSizeOnDevice.html: 使Canvas适应不同设备
 
 ## ThreeJs
