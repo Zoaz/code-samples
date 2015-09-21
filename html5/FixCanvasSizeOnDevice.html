@@ -52,6 +52,7 @@
     function initCanvasWH(canv) {
         var isPhone = isMobile.any();
         if (isPhone) {
+            //如果是手机访问，将canvas大小设为网页可见的大小，乘以0.96是为了四边留些空隙
             canv.width = parseInt(window.innerWidth * 0.96);
             canv.height = parseInt(window.innerHeight * 0.96);
         } else {
