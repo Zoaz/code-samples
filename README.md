@@ -1,15 +1,19 @@
 # 代码模版
 
 ## C
-printf_format.c: printf格式化输出示例
+printf_format.c: printf格式化输出示例  
 
 ## html 
+avoidTextAround.html：防止文字环绕  
+CenterContent.html: 居中显示内容  
+clearFloat.html：清除浮动  
+flexDemo.html：使用flex布局示例  
 JsonToCheckBox.html: 根据json格式信息自动生成checkbox  
-CenterContent.html: 居中显示内容
 
 ## html5
+FixCanvasSizeOnDevice.html: 使Canvas适应不同设备  
 PrelaodImages.html: 预加载图片  
-FixCanvasSizeOnDevice.html: 使Canvas适应不同设备
+
 
 ## ThreeJs
 dynamictexture.html: 在立方体上显示数字  
