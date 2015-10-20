@@ -2,6 +2,7 @@
 
 ## C
 printf_format.c: printf格式化输出示例  
+print_binary.c: 输出二进制  
 
 ## html 
 avoidTextAround.html：防止文字环绕  
