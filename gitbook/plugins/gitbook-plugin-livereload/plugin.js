@@ -1,4 +1,5 @@
 (function() {
+	return;
   var newEl = document.createElement('script'),
       firstScriptTag = document.getElementsByTagName('script')[0];
 
