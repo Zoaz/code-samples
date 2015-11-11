@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>printf格式化输出 | code</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        <meta name="author" content="_">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="./styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="./print_binary.html" />
+    
+    
+    <link rel="prev" href="./c.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="1.1" data-chapter-title="printf格式化输出" data-filepath="printf_format.md" data-basepath="." data-revision="Wed Nov 11 2015 19:37:22 GMT+0800 (中国标准时间)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        前言
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="c.html">
+            
+                
+                    <a href="./c.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        C
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.1" data-path="printf_format.html">
+            
+                
+                    <a href="./printf_format.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        printf格式化输出
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="print_binary.html">
+            
+                
+                    <a href="./print_binary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        打印二进制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="dynamic_array.html">
+            
+                
+                    <a href="./dynamic_array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        动态定义数组
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >code</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="printf&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;">printf&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;</h1>
+<pre><code class="lang-C"><span class="hljs-comment">/**
+ * C&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;
+ */</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">float</span> f = <span class="hljs-number">10.0F</span>;
+    <span class="hljs-keyword">char</span> c = <span class="hljs-string">&apos;D&apos;</span>;
+    <span class="hljs-keyword">char</span> s[] = <span class="hljs-string">&quot;DDDD&quot;</span>;
+    <span class="hljs-keyword">char</span> *s1 = <span class="hljs-string">&quot;CCCC&quot;</span>;
+    <span class="hljs-keyword">long</span> k = <span class="hljs-number">100L</span>;
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> kk = <span class="hljs-number">100L</span>;
+    <span class="hljs-keyword">long</span> <span class="hljs-keyword">double</span> ld = <span class="hljs-number">100.0</span>;
+
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x6709;&#x7B26;&#x53F7;&#x5341;&#x8FDB;&#x5236;&#x6574;&#x6570;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%d**\n&quot;</span>, i);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%i**\n&quot;</span>, i);
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x65E0;&#x7B26;&#x53F7;&#x5341;&#x8FDB;&#x5236;&#x6574;&#x6570;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%u**\n&quot;</span>, i);
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x65E0;&#x7B26;&#x53F7;&#x516B;&#x8FDB;&#x5236;&#x6574;&#x6570;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%o**\n&quot;</span>, i);
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x65E0;&#x7B26;&#x53F7;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x6574;&#x6570;(x-&#x5C0F;&#x5199;&#x5B57;&#x7B26;/X-&#x5927;&#x5199;&#x5B57;&#x7B26;)</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%x**\n&quot;</span>, i);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%X**\n&quot;</span>, i);
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x6D6E;&#x70B9;&#x6570;,&#x5341;&#x8FDB;&#x5236;&#x8BA1;&#x6570;&#x6CD5;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%f**\n&quot;</span>, f);
+
+    <span class="hljs-comment">// %.nf n&#x4FDD;&#x7559;n&#x4F4D;&#x5C0F;&#x6570;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%.2f**\n&quot;</span>, f);
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x6D6E;&#x70B9;&#x6570; e--e&#x8BA1;&#x6570;&#x6CD5;/E--E&#x8BA1;&#x6570;&#x6CD5;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%e**\n&quot;</span>, f);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%E**\n&quot;</span>, f);
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x5B57;&#x7B26;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%c**\n&quot;</span>, c);
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x5B57;&#x7B26;&#x4E32;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%p**\n&quot;</span>, s);
+
+    <span class="hljs-comment">//&#x8F93;&#x51FA;&#x6307;&#x9488;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%s**\n&quot;</span>,s1);
+
+    <span class="hljs-comment">//&#x6253;&#x5370;&#x4E00;&#x4E2A;&#x767E;&#x5206;&#x53F7;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%%**\n&quot;</span>);
+
+    <span class="hljs-comment">// h &#x548C;&#x6574;&#x6570;&#x8F6C;&#x6362;&#x7B26;&#x4E00;&#x8D77;&#x4F7F;&#x7528;,&#x8868;&#x793A;&#x662F;&#x4E00;&#x4E2A;short int &#x6216;&#x8005;unsigned short int</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%hd**\n&quot;</span>, i);
+
+    <span class="hljs-comment">// l &#x548C;&#x6574;&#x6570;&#x8F6C;&#x6362;&#x8BF4;&#x660E;&#x7B26;&#x4E00;&#x8D77;&#x4F7F;&#x7528;,&#x8BF4;&#x660E;&#x662F;&#x4E00;&#x4E2A;long int&#x6216;&#x8005; unsigned long int</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%ld**\n&quot;</span>, k);
+
+    <span class="hljs-comment">// ll &#x548C;&#x6574;&#x6570;&#x8F6C;&#x6362;&#x8BF4;&#x660E;&#x7B26;&#x4E00;&#x8D77;&#x4F7F;&#x7528;,&#x8BF4;&#x660E;&#x662F;&#x4E00;&#x4E2A;long long int &#x6216;&#x8005; unsigned long long int</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%lld**\n&quot;</span>, kk);
+
+    <span class="hljs-comment">// L &#x548C;&#x6D6E;&#x70B9;&#x8F6C;&#x6362;&#x8BF4;&#x660E;&#x7B26;&#x4E00;&#x8D77;&#x4F7F;&#x7528;,&#x8868;&#x793A;&#x4E00;&#x4E2A;long double&#x503C;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%Lf**\n&quot;</span>, ld);
+
+    <span class="hljs-comment">// z &#x548C;&#x6574;&#x6570;&#x8F6C;&#x6362;&#x8BF4;&#x660E;&#x7B26;&#x4E00;&#x8D77;&#x4F7F;&#x7528;,&#x8868;&#x793A;&#x4E00;&#x4E2A;size_t&#x503C;(sizeof&#x8FD4;&#x56DE;&#x7684;&#x7C7B;&#x578B;)</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%zd**\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>));
+
+    <span class="hljs-comment">// %n(d/f/...)  n&#x8868;&#x793A;&#x8F93;&#x51FA;&#x7684;&#x6700;&#x5C0F;&#x5BBD;&#x5EA6;,&#x9ED8;&#x8BA4;&#x662F;&#x53F3;&#x5BF9;&#x9F50;,&#x4E0D;&#x8DB3;&#x8865;&#x7A7A;&#x683C;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%4d**\n&quot;</span>, i);
+
+    <span class="hljs-comment">// %n.ms n&#x8868;&#x793A;&#x6700;&#x5C0F;&#x5BBD;&#x5EA6;,m&#x8868;&#x793A;&#x5B57;&#x7B26;&#x4E32;&#x8F93;&#x51FA;&#x7684;&#x5B57;&#x7B26;&#x6570;&#x76EE;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%4.1s**\n&quot;</span>, s);
+
+    <span class="hljs-comment">// %-n(d/f/...) -&#x8868;&#x793A;&#x5DE6;&#x5BF9;&#x9F50;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%-4d**\n&quot;</span>, i);
+
+    <span class="hljs-comment">// %+(d/f/...) +&#x5728;&#x6709;&#x7B26;&#x53F7;&#x7684;&#x6570;&#x5B57;&#x8F93;&#x51FA;&#x65F6;&#x52A0;&#x4E0A; +/- &#x53F7;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%+d**\n&quot;</span>, i);
+
+    <span class="hljs-comment">// % (d/f/...)  &apos; &apos;(&#x7A7A;&#x683C;)&#x5BF9;&#x4E8E;&#x6709;&#x7B26;&#x53F7;&#x6570;, &#x7B26;&#x53F7;&#x4E3A;+&#x663E;&#x793A;&#x524D;&#x5BFC;&#x7A7A;&#x683C;,&#x7B26;&#x53F7;&#x4E3A;&#x8D1F;&#x663E;&#x793A;-</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**% d**\n&quot;</span>, i);
+
+    <span class="hljs-comment">// %#(o/x/...)&#x4F7F;&#x7528;&#x8F6C;&#x5316;&#x8BF4;&#x660E;&#x7684;&#x53EF;&#x9009;&#x5F62;&#x5F0F;,&#x5982;&#x679C;8&#x8FDB;&#x5236;,&#x5219;&#x4EE5;0&#x5F00;&#x5934;,16&#x8FDB;&#x5236;&#x4EE5;0x&#x5F00;&#x5934;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%#x**\n&quot;</span>, i);
+
+    <span class="hljs-comment">// %0n(d/f/...) n&#x524D;&#x9762;&#x7684;0&#x8868;&#x793A;&#x4F7F;&#x7528;&#x7A7A;&#x683C;&#x586B;&#x5145;&#x5269;&#x4F59;&#x4F4D;</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;**%04d**\n&quot;</span>, i);
+
+}
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./c.html" class="navigation navigation-prev " aria-label="Previous page: C"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./print_binary.html" class="navigation navigation-next " aria-label="Next page: 打印二进制"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
