@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>bootstrap switch demo</title>
+    <link rel="stylesheet" href="css/bootstrap3/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap3/bootstrap-switch.min.css">
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap-switch.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("[name='my-checkbox']").bootstrapSwitch();
+
+            $('input[name="my-checkbox"]').on('switchChange.bootstrapSwitch', function(event, state) {
+                console.log(this); // DOM element
+                console.log(event); // jQuery event
+                console.log(state); // true | false
+            });
+        });
+    </script>
+</head>
+<body>
+<div style="margin: 20px">
+    <input type="checkbox" name="my-checkbox" data-on-text="是" data-off-text="否"checked>
+</div>
+
+</body>
+</html>
