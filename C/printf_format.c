@@ -43,10 +43,10 @@ int main() {
     printf("**%c**\n", c);
 
     //输出字符串
-    printf("**%p**\n", s);
+    printf("**%s**\n", s);
 
     //输出指针
-    printf("**%s**\n",s1);
+    printf("**%p**\n",s1);
 
     //打印一个百分号
     printf("**%%**\n");
