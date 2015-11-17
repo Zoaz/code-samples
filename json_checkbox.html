@@ -1,0 +1,687 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>根据json动态生成checkbox | code</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        <meta name="author" content="_">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="./styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="./center_content.html" />
+    
+    
+    <link rel="prev" href="./common.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="2.1.1" data-chapter-title="根据json动态生成checkbox" data-filepath="json_checkbox.md" data-basepath="." data-revision="Tue Nov 17 2015 23:21:31 GMT+0800 (中国标准时间)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        前言
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="c.html">
+            
+                
+                    <a href="./c.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        c
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="printf_format.html">
+            
+                
+                    <a href="./printf_format.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        printf格式化输出
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="print_binary.html">
+            
+                
+                    <a href="./print_binary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        打印二进制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="dynamic_array.html">
+            
+                
+                    <a href="./dynamic_array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        动态定义数组
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="html.html">
+            
+                
+                    <a href="./html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        html
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="common.html">
+            
+                
+                    <a href="./common.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        common
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.1.1" data-path="json_checkbox.html">
+            
+                
+                    <a href="./json_checkbox.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        根据json动态生成checkbox
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="center_content.html">
+            
+                
+                    <a href="./center_content.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        居中显示内容
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="avoid_text.html">
+            
+                
+                    <a href="./avoid_text.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        防止文字环绕
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="clear_float.html">
+            
+                
+                    <a href="./clear_float.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        清除浮动
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="flex.html">
+            
+                
+                    <a href="./flex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        Flex--圣杯布局
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="html5.html">
+            
+                
+                    <a href="./html5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        html5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="preload_image.html">
+            
+                
+                    <a href="./preload_image.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        预加载图片
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="canvas_autofit.html">
+            
+                
+                    <a href="./canvas_autofit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.2.</b>
+                        
+                        canvas自适应
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="bootstrap.html">
+            
+                
+                    <a href="./bootstrap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        bootstrap
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="navigation.html">
+            
+                
+                    <a href="./navigation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        导航菜单
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="switch.html">
+            
+                
+                    <a href="./switch.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        开关切换
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="toaster.html">
+            
+                
+                    <a href="./toaster.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        信息提示
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="loading.html">
+            
+                
+                    <a href="./loading.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.4.</b>
+                        
+                        加载
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="fix_footer.html">
+            
+                
+                    <a href="./fix_footer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.5.</b>
+                        
+                        底部固定
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="ubuntu.html">
+            
+                
+                    <a href="./ubuntu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        ubuntu
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="ubuntu_desktop.html">
+            
+                
+                    <a href="./ubuntu_desktop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        创建桌面快捷方式
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >code</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="&#x6839;&#x636E;json&#x52A8;&#x6001;&#x751F;&#x6210;checkbox">&#x6839;&#x636E;json&#x52A8;&#x6001;&#x751F;&#x6210;checkbox</h1>
+<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>&#x6839;&#x636E;Json&#x52A8;&#x6001;&#x751F;&#x6210;checkbox<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/css&quot;</span>&gt;</span><span class="css">
+
+        <span class="hljs-tag">body</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> auto</span></span>;
+        }</span>
+
+        <span class="hljs-id">#show</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">10px</span> auto</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">450px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">14px</span></span></span>;
+        }</span>
+
+        <span class="hljs-class">.content</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">450px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">10px</span> <span class="hljs-number">0px</span> <span class="hljs-number">20px</span> <span class="hljs-number">10px</span></span></span>;
+        }</span>
+
+        <span class="hljs-class">.bigfont</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">14px</span></span></span>;
+        }</span>
+
+        <span class="hljs-class">.la</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">50px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">20px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">5px</span> <span class="hljs-number">0</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">line-height</span>:<span class="hljs-value"> <span class="hljs-number">20px</span></span></span>;
+        }</span>
+
+        <span class="hljs-class">.la</span> <span class="hljs-tag">input</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+        }</span>
+
+        <span class="hljs-class">.la</span> <span class="hljs-tag">span</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">line-height</span>:<span class="hljs-value"> <span class="hljs-number">20px</span></span></span>;
+        }</span>
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;../libs/jquery/jquery-1.11.2.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript">
+
+        <span class="hljs-built_in">window</span>.onload = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> years = [<span class="hljs-string">&quot;2013&quot;</span>, <span class="hljs-string">&quot;2014&quot;</span>];
+            <span class="hljs-keyword">var</span> months = {
+                <span class="hljs-string">&quot;2013&quot;</span>: [<span class="hljs-number">12</span>, <span class="hljs-number">11</span>, <span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>],
+                <span class="hljs-string">&quot;2014&quot;</span>: [<span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]
+            };
+            <span class="hljs-keyword">var</span> yearMonth = [years, months];
+            genCheck(yearMonth);
+        }
+
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">genCheck</span>(<span class="hljs-params">yearMonth</span>) </span>{
+            <span class="hljs-keyword">var</span> content = <span class="hljs-string">&quot;content&quot;</span>;
+            <span class="hljs-keyword">var</span> checkText = <span class="hljs-string">&quot;checkbox&quot;</span>;
+            <span class="hljs-keyword">var</span> link = <span class="hljs-string">&quot;link&quot;</span>;
+            <span class="hljs-keyword">var</span> size;
+
+            $(<span class="hljs-string">&quot;#show&quot;</span>).html(<span class="hljs-string">&quot;&quot;</span>);
+
+            <span class="hljs-keyword">var</span> years = yearMonth[<span class="hljs-number">0</span>];
+            size = years.length;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; years.length; i++) {
+                genShowContent(<span class="hljs-string">&quot;show&quot;</span>, checkText + i, i, years[i] + <span class="hljs-string">&quot;&#x5E74;&quot;</span>, content + i);
+            }
+            <span class="hljs-keyword">var</span> monthObj = yearMonth[<span class="hljs-number">1</span>];
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; years.length; i++) {
+                <span class="hljs-keyword">var</span> array = monthObj[<span class="hljs-string">&quot;&quot;</span> + years[i] + <span class="hljs-string">&quot;&quot;</span>];
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; array.length; j++) {
+                    genCheckBox(content + i, link + i, array[j], array[j] + <span class="hljs-string">&quot;&#x6708;&quot;</span>, i, <span class="hljs-literal">false</span>);
+                }
+
+                <span class="hljs-keyword">var</span> flag = isAllCheck(link + i);
+                <span class="hljs-keyword">var</span> box = <span class="hljs-built_in">document</span>.getElementById(checkText + i);
+                <span class="hljs-keyword">if</span> (flag) {
+                    box.checked = <span class="hljs-literal">true</span>;
+                } <span class="hljs-keyword">else</span> {
+                    box.checked = <span class="hljs-literal">false</span>;
+                }
+                $(<span class="hljs-string">&quot;input[name=&quot;</span> + link + i + <span class="hljs-string">&quot;]&quot;</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                    $(<span class="hljs-keyword">this</span>).unbind();
+                    $(<span class="hljs-keyword">this</span>).change(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                        <span class="hljs-keyword">var</span> flag = isAllCheck($(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">&quot;name&quot;</span>));
+                        <span class="hljs-keyword">var</span> box = <span class="hljs-built_in">document</span>.getElementById(checkText + $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">&quot;parentIndex&quot;</span>));
+                        <span class="hljs-keyword">if</span> (flag) {
+                            box.checked = <span class="hljs-literal">true</span>;
+                        } <span class="hljs-keyword">else</span> {
+                            box.checked = <span class="hljs-literal">false</span>;
+                        }
+                    });
+                });
+            }
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) {
+                $(<span class="hljs-string">&quot;#&quot;</span> + checkText + i).unbind();
+                $(<span class="hljs-string">&quot;#&quot;</span> + checkText + i).change(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+                    <span class="hljs-keyword">var</span> temp = link + $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">&quot;index&quot;</span>);
+                    <span class="hljs-keyword">var</span> p = <span class="hljs-built_in">document</span>.getElementById(checkText + $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">&quot;index&quot;</span>));
+                    <span class="hljs-keyword">var</span> box = <span class="hljs-built_in">document</span>.getElementsByName(temp);
+                    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; box.length; j++) {
+                        <span class="hljs-keyword">if</span> (p.checked) {
+                            box[j].checked = <span class="hljs-literal">true</span>;
+                        } <span class="hljs-keyword">else</span> {
+                            box[j].checked = <span class="hljs-literal">false</span>;
+                        }
+                    }
+                });
+            }
+        }
+
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">genCheckBox</span>(<span class="hljs-params">id, name, value, showText, parentIndex, isCheck</span>) </span>{
+            <span class="hljs-keyword">if</span> (!isCheck) {
+                <span class="hljs-keyword">var</span> checkbox = <span class="hljs-string">&quot;&lt;div class=&apos;la&apos;&gt;&lt;input type=&apos;checkbox&apos; parentIndex=&quot;</span> + parentIndex + <span class="hljs-string">&quot; name=&quot;</span>.concat(name).concat(<span class="hljs-string">&quot; value=&quot;</span>).concat(value).concat(<span class="hljs-string">&quot; alt=&quot;</span>).concat(showText).concat(<span class="hljs-string">&quot; /&gt;&lt;span&gt;&quot;</span>).concat(showText).concat(<span class="hljs-string">&quot;&lt;/span&gt;&lt;/div&gt;&quot;</span>);
+                $(<span class="hljs-string">&quot;#&quot;</span> + id).append(checkbox);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">var</span> checkbox = <span class="hljs-string">&quot;&lt;div class=&apos;la&apos;&gt;&lt;input type=&apos;checkbox&apos; parentIndex=&quot;</span> + parentIndex + <span class="hljs-string">&quot; name=&quot;</span>.concat(name).concat(<span class="hljs-string">&quot; checked=&apos;checked&apos; value=&quot;</span>).concat(value).concat(<span class="hljs-string">&quot; alt=&quot;</span>).concat(showText).concat(<span class="hljs-string">&quot; /&gt;&lt;span&gt;&quot;</span>).concat(showText).concat(<span class="hljs-string">&quot;&lt;/span&gt;&lt;/div&gt;&quot;</span>);
+                $(<span class="hljs-string">&quot;#&quot;</span> + id).append(checkbox);
+            }
+        }
+
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">genShowContent</span>(<span class="hljs-params">id, checkboxId, index, showText, idName</span>) </span>{
+            <span class="hljs-keyword">var</span> showContent = <span class="hljs-string">&quot;&lt;div class=&apos;msg&apos;&gt;&lt;span class=&apos;bigfont&apos;&gt;&quot;</span>.concat(showText).concat(<span class="hljs-string">&quot;&#xFF1A; &lt;/span&gt;&lt;input type=&apos;checkbox&apos; index=&quot;</span>).concat(index).concat(<span class="hljs-string">&quot; id=&apos;&quot;</span>).concat(checkboxId).concat(<span class="hljs-string">&quot;&apos;/&gt;&lt;span&gt;&#x5168;&#x9009;&lt;/span&gt;&lt;div class=&apos;content&apos; id=&apos;&quot;</span>).concat(idName).concat(<span class="hljs-string">&quot;&apos; &gt;&lt;/div&gt;&lt;/div&gt;&quot;</span>);
+            $(<span class="hljs-string">&quot;#&quot;</span> + id).append(showContent);
+        }
+
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isAllCheck</span>(<span class="hljs-params">name</span>) </span>{
+            <span class="hljs-keyword">var</span> box = <span class="hljs-built_in">document</span>.getElementsByName(name);
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; box.length; j++) {
+                <span class="hljs-keyword">if</span> (!box[j].checked) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                }
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;show&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;show&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./common.html" class="navigation navigation-prev " aria-label="Previous page: common"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./center_content.html" class="navigation navigation-next " aria-label="Next page: 居中显示内容"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>动态定义数组 | code</title>
+        <title>导航菜单 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./html.html" />
+    <link rel="next" href="./switch.html" />
     
     
-    <link rel="prev" href="./print_binary.html" />
+    <link rel="prev" href="./bootstrap.html" />
     
 
         
@@ -50,7 +50,7 @@
     <body>
         
         
-    <div class="book" data-level="1.3" data-chapter-title="动态定义数组" data-filepath="dynamic_array.md" data-basepath="." data-revision="Tue Nov 17 2015 23:21:31 GMT+0800 (中国标准时间)">
+    <div class="book" data-level="2.3.1" data-chapter-title="导航菜单" data-filepath="navigation.md" data-basepath="." data-revision="Tue Nov 17 2015 23:21:31 GMT+0800 (中国标准时间)">
     
 
 <div class="book-summary">
@@ -124,7 +124,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="dynamic_array.html">
+        <li class="chapter " data-level="1.3" data-path="dynamic_array.html">
             
                 
                     <a href="./dynamic_array.html">
@@ -323,7 +323,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.3.1" data-path="navigation.html">
+        <li class="chapter active" data-level="2.3.1" data-path="navigation.html">
             
                 
                     <a href="./navigation.html">
@@ -477,60 +477,110 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="&#x52A8;&#x6001;&#x5B9A;&#x4E49;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;">&#x52A8;&#x6001;&#x5B9A;&#x4E49;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;</h1>
-<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+                        <h1 id="&#x5BFC;&#x822A;&#x83DC;&#x5355;">&#x5BFC;&#x822A;&#x83DC;&#x5355;</h1>
+<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
 
-<span class="hljs-comment">/*
- * &#x5B9A;&#x4E49;&#x4E00;&#x7EF4;&#x6570;&#x7EC4;
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">defOneDimArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
-    <span class="hljs-keyword">int</span> *arr = (<span class="hljs-keyword">int</span>*)<span class="hljs-built_in">calloc</span>(n, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>));
-    <span class="hljs-keyword">int</span> i;
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        arr[i] = i;
-    }
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;i is %d and arr[i] is %d \n&quot;</span>, i, arr[i]);
-    }
-    <span class="hljs-comment">//&#x9700;&#x8981;&#x91CA;&#x653E;&#x5185;&#x5B58;</span>
-    <span class="hljs-built_in">free</span>(arr);
-}
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;utf-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">http-equiv</span>=<span class="hljs-value">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">&quot;IE=edge&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
 
-<span class="hljs-comment">/*
- * &#x5B9A;&#x4E49;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">defTwoDimArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n)</span> </span>{
-    <span class="hljs-keyword">int</span> **arr = (<span class="hljs-keyword">int</span> **)<span class="hljs-built_in">calloc</span>(m, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span> *));
-    <span class="hljs-keyword">int</span> i, j, index = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; i++) {
-        arr[i] = (<span class="hljs-keyword">int</span> *) (<span class="hljs-built_in">calloc</span>(n, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>)));
-    }
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>&#x5BFC;&#x822A;&#x83DC;&#x5355;<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; i++) {
-        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; n; j++) {
-            arr[i][j] = index;
-            index++;
+    <span class="hljs-comment">&lt;!-- Bootstrap Core CSS --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;../libs/bootstrap/css/bootstrap.min.css&quot;</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">&quot;stylesheet&quot;</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- Custom CSS --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;../libs/bootstrap/css/style.css&quot;</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">&quot;stylesheet&quot;</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+        <span class="hljs-tag">body</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">&quot;Arial&quot;</span>, <span class="hljs-string">&quot;Microsoft YaHei&quot;</span>, <span class="hljs-string">&quot;&#x9ED1;&#x4F53;&quot;</span>, <span class="hljs-string">&quot;&#x5B8B;&#x4F53;&quot;</span>, sans-serif</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#EBF5F3</span></span></span>;
+        }</span>
+
+        <span class="hljs-class">.navbar-custom</span> <span class="hljs-rules">{
+            <span class="hljs-comment">/*color: #FFFFFF;*/</span>
+            <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#56b9ab</span></span></span>;
+
+        }</span>
+
+        <span class="hljs-class">.navbar-brand</span>,
+        <span class="hljs-class">.navbar-nav</span> <span class="hljs-tag">li</span> <span class="hljs-tag">a</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">line-height</span>:<span class="hljs-value"> <span class="hljs-number">55px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">55px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">padding-top</span>:<span class="hljs-value"> <span class="hljs-number">0px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">&quot;Arial&quot;</span>, <span class="hljs-string">&quot;Microsoft YaHei&quot;</span>, <span class="hljs-string">&quot;&#x9ED1;&#x4F53;&quot;</span>, <span class="hljs-string">&quot;&#x5B8B;&#x4F53;&quot;</span>, sans-serif</span></span>;
+
+        }</span>
+
+        <span class="hljs-class">.navbar-default</span> <span class="hljs-class">.navbar-nav</span> &gt; <span class="hljs-tag">li</span> &gt; <span class="hljs-tag">a</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ffffff</span></span></span>;
+        }</span>
+
+        <span class="hljs-class">.navbar-default</span> <span class="hljs-class">.navbar-nav</span> &gt; <span class="hljs-tag">li</span> &gt; <span class="hljs-rule"><span class="hljs-attribute">a</span>:<span class="hljs-value">hover {
+            color: <span class="hljs-hexcolor">#175A94</span></span></span>;
         }
-    }
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; i++) {
-        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; n; j++) {
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;i is %d and j is %d and arr[i][j] is %d\n&quot;</span>, i, j, arr[i][j]);
-        }
-    }
+        <span class="hljs-class">.page-header</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">&quot;Arial&quot;</span>, <span class="hljs-string">&quot;Microsoft YaHei&quot;</span>, <span class="hljs-string">&quot;&#x9ED1;&#x4F53;&quot;</span>, <span class="hljs-string">&quot;&#x5B8B;&#x4F53;&quot;</span>, sans-serif</span></span>;
+            <span class="hljs-comment">/* border-bottom: 1px solid #bbb;*/</span>
+        }</span>
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; i++) {
-        <span class="hljs-built_in">free</span>(arr[i]);
-    }
-    <span class="hljs-built_in">free</span>(arr);
-}
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    defOneDimArray(<span class="hljs-number">10</span>);
-    defTwoDimArray(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
-}
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!--[if lt IE 9]&gt;
+    &lt;script src=&quot;//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//cdn.bootcss.com/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;navbar navbar-default navbar-custom&quot;</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;navigation&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;navbar-header&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;navbar-toggle&quot;</span> <span class="hljs-attribute">data-toggle</span>=<span class="hljs-value">&quot;collapse&quot;</span> <span class="hljs-attribute">data-target</span>=<span class="hljs-value">&quot;.navbar-collapse&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;sr-only&quot;</span>&gt;</span>Toggle navigation<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;icon-bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;icon-bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;icon-bar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;navbar-brand&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">&quot;Brand&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;http://zhangjikai.com/bootstrap/images/logo.png&quot;</span> <span class="hljs-attribute">height</span>=<span class="hljs-value">&quot;50&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;navbar-collapse collapse&quot;</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- Left nav --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;nav navbar-nav navbar-right&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">&quot;_blank&quot;</span>&gt;</span>&#x83DC;&#x5355;<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">&quot;_blank&quot;</span>&gt;</span>&#x83DC;&#x5355;<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+
+<span class="hljs-comment">&lt;!-- Page Content --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;col-lg-12&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">h2</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;page-header&quot;</span>&gt;</span>Hello<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- /.container --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;../libs/jquery/jquery-1.11.2.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;../libs/bootstrap/js/bootstrap.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
 
                     
@@ -542,10 +592,10 @@
         </div>
 
         
-        <a href="./print_binary.html" class="navigation navigation-prev " aria-label="Previous page: 打印二进制"><i class="fa fa-angle-left"></i></a>
+        <a href="./bootstrap.html" class="navigation navigation-prev " aria-label="Previous page: bootstrap"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./html.html" class="navigation navigation-next " aria-label="Next page: html"><i class="fa fa-angle-right"></i></a>
+        <a href="./switch.html" class="navigation navigation-next " aria-label="Next page: 开关切换"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

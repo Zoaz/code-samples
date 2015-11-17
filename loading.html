@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>动态定义数组 | code</title>
+        <title>加载 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./html.html" />
+    <link rel="next" href="./fix_footer.html" />
     
     
-    <link rel="prev" href="./print_binary.html" />
+    <link rel="prev" href="./toaster.html" />
     
 
         
@@ -50,7 +50,7 @@
     <body>
         
         
-    <div class="book" data-level="1.3" data-chapter-title="动态定义数组" data-filepath="dynamic_array.md" data-basepath="." data-revision="Tue Nov 17 2015 23:21:31 GMT+0800 (中国标准时间)">
+    <div class="book" data-level="2.3.4" data-chapter-title="加载" data-filepath="loading.md" data-basepath="." data-revision="Tue Nov 17 2015 23:21:31 GMT+0800 (中国标准时间)">
     
 
 <div class="book-summary">
@@ -124,7 +124,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="dynamic_array.html">
+        <li class="chapter " data-level="1.3" data-path="dynamic_array.html">
             
                 
                     <a href="./dynamic_array.html">
@@ -368,7 +368,7 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3.4" data-path="loading.html">
+        <li class="chapter active" data-level="2.3.4" data-path="loading.html">
             
                 
                     <a href="./loading.html">
@@ -477,60 +477,44 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="&#x52A8;&#x6001;&#x5B9A;&#x4E49;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;">&#x52A8;&#x6001;&#x5B9A;&#x4E49;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;</h1>
-<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+                        <h1 id="&#x52A0;&#x8F7D;">&#x52A0;&#x8F7D;</h1>
+<pre><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">http-equiv</span>=<span class="hljs-value">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">&quot;IE=edge&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span>
 
-<span class="hljs-comment">/*
- * &#x5B9A;&#x4E49;&#x4E00;&#x7EF4;&#x6570;&#x7EC4;
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">defOneDimArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
-    <span class="hljs-keyword">int</span> *arr = (<span class="hljs-keyword">int</span>*)<span class="hljs-built_in">calloc</span>(n, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>));
-    <span class="hljs-keyword">int</span> i;
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        arr[i] = i;
-    }
+    <span class="hljs-comment">&lt;!-- &#x63D2;&#x4EF6;&#x5730;&#x5740;&#xFF1A;https://github.com/ehpc/bootstrap-waitingfor --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>&#x52A0;&#x8F7D;&#x63D2;&#x4EF6;<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">&quot;stylesheet&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;../libs/bootstrap/css/bootstrap.min.css&quot;</span>&gt;</span>
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;i is %d and arr[i] is %d \n&quot;</span>, i, arr[i]);
-    }
-    <span class="hljs-comment">//&#x9700;&#x8981;&#x91CA;&#x653E;&#x5185;&#x5B58;</span>
-    <span class="hljs-built_in">free</span>(arr);
-}
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;../libs/jquery/jquery-1.11.2.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;../libs/bootstrap/js/bootstrap.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;../libs/bootstrap/js/bootstrap-waitingfor.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 
-<span class="hljs-comment">/*
- * &#x5B9A;&#x4E49;&#x4E8C;&#x7EF4;&#x6570;&#x7EC4;
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">defTwoDimArray</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n)</span> </span>{
-    <span class="hljs-keyword">int</span> **arr = (<span class="hljs-keyword">int</span> **)<span class="hljs-built_in">calloc</span>(m, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span> *));
-    <span class="hljs-keyword">int</span> i, j, index = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; i++) {
-        arr[i] = (<span class="hljs-keyword">int</span> *) (<span class="hljs-built_in">calloc</span>(n, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>)));
-    }
+    <span class="hljs-comment">&lt;!--[if lt IE 9]&gt;
+    &lt;script src=&quot;//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;//cdn.bootcss.com/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;
+    &lt;![endif]--&gt;</span>
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; i++) {
-        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; n; j++) {
-            arr[i][j] = index;
-            index++;
-        }
-    }
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;open&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn-primary &quot;</span>&gt;</span>Click Me<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; i++) {
-        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; n; j++) {
-            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;i is %d and j is %d and arr[i][j] is %d\n&quot;</span>, i, j, arr[i][j]);
-        }
-    }
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript">
+    $(<span class="hljs-string">&quot;#open&quot;</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        waitingDialog.show();
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; m; i++) {
-        <span class="hljs-built_in">free</span>(arr[i]);
-    }
-    <span class="hljs-built_in">free</span>(arr);
-}
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    defOneDimArray(<span class="hljs-number">10</span>);
-    defTwoDimArray(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
-}
+        setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            waitingDialog.hide();
+        },<span class="hljs-number">2000</span>);
+    })
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
 
                     
@@ -542,10 +526,10 @@
         </div>
 
         
-        <a href="./print_binary.html" class="navigation navigation-prev " aria-label="Previous page: 打印二进制"><i class="fa fa-angle-left"></i></a>
+        <a href="./toaster.html" class="navigation navigation-prev " aria-label="Previous page: 信息提示"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./html.html" class="navigation navigation-next " aria-label="Next page: html"><i class="fa fa-angle-right"></i></a>
+        <a href="./fix_footer.html" class="navigation navigation-next " aria-label="Next page: 底部固定"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
