@@ -9,8 +9,7 @@
  * bit_len: 二进制的长度,不要超过64位
  */
 void print_binary(uint64_t t, int bit_len) {
-	short *buffer;
-	buffer = (short *) calloc(bit_len , sizeof(short));
+	short buffer[bit_len];
 	int i;
 	for (i = 0; i < bit_len; i++) {
 		if (t == 0)
@@ -25,7 +24,6 @@ void print_binary(uint64_t t, int bit_len) {
 	for (i = bit_len - 1; i >= 0; i--) {
 		printf("%hd", buffer[i]);
 	}
-	free(buffer);
 }
 
 void main() {
