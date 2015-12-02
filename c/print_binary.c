@@ -11,6 +11,11 @@
 void print_binary(uint64_t t, int bit_len) {
 	short buffer[bit_len];
 	int i;
+	
+	for(i = 0; i < bit_len; i++) {
+		buffer[i] = 0;
+	}
+	
 	for (i = 0; i < bit_len; i++) {
 		if (t == 0)
 			break;
