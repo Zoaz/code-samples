@@ -1,10 +1,22 @@
 # 代码模版
 
 ## c
-* [printf_format.c: printf格式化输出示例](c/printf_format.c)
-* [print_binary.c: 输出二进制](c/print_binary.c)
-* [dynamic_array.c: 动态定义数组](c/dynamic_array.c)
-* [timer.h: 程序计时](c/timer.h)
+### common
+* [printf_format.c: printf格式化输出示例](c/common/printf_format.c)
+* [print_binary.c: 输出二进制](c/common/print_binary.c)
+* [dynamic_array.c: 动态定义数组](c/common/dynamic_array.c)
+* [timer.h: 程序计时](c/common/timer.h)
+
+### mic
+* [helloworld.c: HelloWorld](c/mic/helloworld.c)
+* [use_offloadh_api.c: 使用offload.h中的api](c/mic/use_offloadh_api.c)
+* [offload_varfun.c: 定义可以在mic上使用的全局变量和函数](c/mic/offload_varfun.c)
+* [offload_transdata.c: 在cpu和mic之间传输数据](c/mic/offload_transdata.c)
+* [offload_static_array.c: 传输一维静态数组到mic上](c/mic/offload_static_array.c)
+* [offload_static_array2.c: 传输二维静态数组到mic上](c/mic/offload_static_array2.c)
+* [offload_pointer.c: 传输指针](c/mic/offload_pointer.c)
+* [offload_pointter2.c: 传输指针(指针指向的数组中每个元素是一个一维静态数组)](c/mic/offload_pointer2.c)
+* [offload_struct.c: 传输结构体(结构体中包含一个指针)](c/mic/offload_struct.c)
 
 ## html 
 ### common
