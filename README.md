@@ -20,12 +20,12 @@
 * [offload_into.c: 将一个变量的值传到另外一个变量中 ](c/mic/offload_into.c)
 * [offload_alloc_free.c: 使用alloc_if以及free_if控制内存分配和释放](c/mic/offload_alloc_free.c)
 * [share_varfun.c: 在共享内存模式下, 定义可以在mic和cpu上共享的变量和函数](c/mic/share_varfun.c)
-* [share_pointer.c: 在共享内存模式下, 共享指针的内存分配及释放](c/mic/share_pointer.c)
+* [share_pointer.c: 共享指针的内存分配及释放](c/mic/share_pointer.c)
 * [share_pointer2.c: 在共享内存模式下, 使用二维指针](c/mic/share_pointer2.c)
 * [sync_compute.c: MIC和CPU异步计算](c/mic/sync_compute.c)
 * [sync_transfer.c: MIC和CPU异步数据传输](c/mic/sync_transfer.c)
-* [multi_declare.c: 同时声明多个可以MIC上执行的变量或者函数](c/mic/multi_declare.c)
-* [vector_hello.c: 使用MIC的向量化单元进行计算的简单示例](c/mic/vector_hello.c)
+* [multi_declare.c: 同时声明多个可以MIC上使用的变量或者函数](c/mic/multi_declare.c)
+* [vector_hello.c: 向量化示例](c/mic/vector_hello.c)
 
 ## html 
 ### common
