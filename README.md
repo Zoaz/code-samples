@@ -17,6 +17,12 @@
 * [offload_pointer.c: 传输指针](c/mic/offload_pointer.c)
 * [offload_pointter2.c: 传输指针(指针指向的数组中每个元素是一个一维静态数组)](c/mic/offload_pointer2.c)
 * [offload_struct.c: 传输结构体(结构体中包含一个指针)](c/mic/offload_struct.c)
+* [offload_into.c: 将一个变量的值传到另外一个变量中 ](c/mic/offload_into.c)
+* [offload_alloc_free.c: 使用alloc_if以及free_if控制内存分配和释放](c/mic/offload_alloc_free.c)
+* [share_varfun.c: 在共享内存模式下, 定义可以在mic和cpu上共享的变量和函数](c/mic/share_varfun.c)
+* [share_pointer.c: 在共享内存模式下, 共享指针的内存分配及释放](c/mic/share_pointer.c)
+* [share_pointer2.c: 在共享内存模式下, 使用二维指针](c/mic/share_pointer2.c)
+* [vector_hello.c: 使用MIC的向量化单元进行计算的简单示例](c/mic/vector_hello.c)
 
 ## html 
 ### common
