@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>ubuntu | code</title>
+        <title>程序计时 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./ubuntu_desktop.html" />
+    <link rel="next" href="./c_mic.html" />
     
     
-    <link rel="prev" href="./fix_footer.html" />
+    <link rel="prev" href="./c_printf_format.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="ubuntu"
-        data-filepath="ubuntu.md"
+        data-level="1.1.4"
+        data-chapter-title="程序计时"
+        data-filepath="c_c_timer.md"
         data-basepath="."
         data-revision="Tue Dec 08 2015 22:47:27 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -161,7 +161,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.4" data-path="c_c_timer.html">
+        <li class="chapter active" data-level="1.1.4" data-path="c_c_timer.html">
             
                 
                     <a href="./c_c_timer.html">
@@ -741,7 +741,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="ubuntu.html">
+        <li class="chapter " data-level="3" data-path="ubuntu.html">
             
                 
                     <a href="./ubuntu.html">
@@ -825,11 +825,42 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="ubuntu">ubuntu</h1>
-<ul>
-<li><a href="ubuntu_desktop.html">&#x521B;&#x5EFA;&#x684C;&#x9762;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;</a></li>
-<li><a href="ubuntu_shell.html">&#x7F16;&#x5199;shell&#x811A;&#x672C;</a></li>
-</ul>
+                        <h1 id="&#x7A0B;&#x5E8F;&#x8BA1;&#x65F6;">&#x7A0B;&#x5E8F;&#x8BA1;&#x65F6;</h1>
+<pre><code class="lang-C"><span class="hljs-comment">/* File:     timer.h
+ *
+ * Purpose:  Define a macro that returns the number of seconds that 
+ *           have elapsed since some point in the past.  The timer
+ *           should return times with microsecond accuracy.
+ *
+ * Note:     The argument passed to the GET_TIME macro should be
+ *           a double, *not* a pointer to a double.
+ *
+ * Example:  
+ *    #include &quot;timer.h&quot;
+ *    . . .
+ *    double start, finish, elapsed;
+ *    . . .
+ *    GET_TIME(start);
+ *    . . .
+ *    Code to be timed
+ *    . . .
+ *    GET_TIME(finish);
+ *    elapsed = finish - start;
+ *    printf(&quot;The code to be timed took %e seconds\n&quot;, elapsed);
+ */</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">ifndef</span> _TIMER_H_</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> _TIMER_H_</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/time.h&gt;</span></span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> GET_TIME(now) { \
+   struct timeval t; \
+   gettimeofday(&amp;t, NULL); \
+   now = t.tv_sec + t.tv_usec/<span class="hljs-number">1000000.0</span>; \
+}</span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">endif</span></span>
+</code></pre>
 
                     
                     </section>
@@ -840,10 +871,10 @@
         </div>
 
         
-        <a href="./fix_footer.html" class="navigation navigation-prev " aria-label="Previous page: 底部固定"><i class="fa fa-angle-left"></i></a>
+        <a href="./c_printf_format.html" class="navigation navigation-prev " aria-label="Previous page: printf格式化输出"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./ubuntu_desktop.html" class="navigation navigation-next " aria-label="Next page: 创建桌面快捷方式"><i class="fa fa-angle-right"></i></a>
+        <a href="./c_mic.html" class="navigation navigation-next " aria-label="Next page: mic"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

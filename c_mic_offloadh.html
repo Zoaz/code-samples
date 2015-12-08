@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>ubuntu | code</title>
+        <title>使用offload.h的api | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./ubuntu_desktop.html" />
+    <link rel="next" href="./c_mic_varfun.html" />
     
     
-    <link rel="prev" href="./fix_footer.html" />
+    <link rel="prev" href="./c_mic_helloworld.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="ubuntu"
-        data-filepath="ubuntu.md"
+        data-level="1.2.2"
+        data-chapter-title="使用offload.h的api"
+        data-filepath="c_mic_offloadh.md"
         data-basepath="."
         data-revision="Tue Dec 08 2015 22:47:27 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -212,7 +212,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="c_mic_offloadh.html">
+        <li class="chapter active" data-level="1.2.2" data-path="c_mic_offloadh.html">
             
                 
                     <a href="./c_mic_offloadh.html">
@@ -741,7 +741,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="ubuntu.html">
+        <li class="chapter " data-level="3" data-path="ubuntu.html">
             
                 
                     <a href="./ubuntu.html">
@@ -825,11 +825,27 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="ubuntu">ubuntu</h1>
-<ul>
-<li><a href="ubuntu_desktop.html">&#x521B;&#x5EFA;&#x684C;&#x9762;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;</a></li>
-<li><a href="ubuntu_shell.html">&#x7F16;&#x5199;shell&#x811A;&#x672C;</a></li>
-</ul>
+                        <h2 id="&#x4F7F;&#x7528;offloadh&#x7684;api">&#x4F7F;&#x7528;offload.h&#x7684;api</h2>
+<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;offload.h&gt;</span></span>
+
+<span class="hljs-comment">//&#x4F7F;&#x7528;offload.h&#x4E2D;&#x7684;api</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//&#x83B7;&#x5F97;&#x7CFB;&#x7EDF;&#x4E2D;&#x534F;&#x5904;&#x7406;&#x5668;&#x7684;&#x6570;&#x91CF;,&#x4E0D;&#x9700;&#x8981;offload&#x5230;mic&#x4E0A;</span>
+    <span class="hljs-keyword">int</span> i = _Offload_number_of_devices();
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;the devices of mic is %d\n&quot;</span>, i);
+
+    <span class="hljs-comment">// mic:1 &#x6267;&#x884C;mic&#x5361;&#x7684;&#x7F16;&#x53F7;, &#x4E0D;&#x6307;&#x5B9A;&#x5219;&#x4F7F;&#x7528;0&#x53F7;</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> offload target(mic:<span class="hljs-number">1</span>) </span>
+    {
+        <span class="hljs-comment">//&#x83B7;&#x5F97;&#x5F53;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x534F;&#x5904;&#x7406;&#x5668;&#x7F16;&#x53F7;,&#x5982;&#x679C;&#x4E0D;offload&#x5230;mic&#x4E0A;,&#x800C;&#x662F;&#x5728;cpu&#x4E0A;&#x6267;&#x884C;,&#x4F1A;&#x8FD4;&#x56DE;-1.0&#x4EE3;&#x8868;&#x7B2C;&#x4E00;&#x5757;&#x5361;</span>
+        <span class="hljs-keyword">int</span> j = _Offload_get_device_number();
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;the index of mic is %d\n&quot;</span>, j);    
+    }
+}
+</code></pre>
 
                     
                     </section>
@@ -840,10 +856,10 @@
         </div>
 
         
-        <a href="./fix_footer.html" class="navigation navigation-prev " aria-label="Previous page: 底部固定"><i class="fa fa-angle-left"></i></a>
+        <a href="./c_mic_helloworld.html" class="navigation navigation-prev " aria-label="Previous page: HelloWorld"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./ubuntu_desktop.html" class="navigation navigation-next " aria-label="Next page: 创建桌面快捷方式"><i class="fa fa-angle-right"></i></a>
+        <a href="./c_mic_varfun.html" class="navigation navigation-next " aria-label="Next page: 定义在mic上使用的全局变量和函数"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

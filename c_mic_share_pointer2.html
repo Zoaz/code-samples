@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>ubuntu | code</title>
+        <title>共享内存: 使用二维指针 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./ubuntu_desktop.html" />
+    <link rel="next" href="./c_mic_sync_compute.html" />
     
     
-    <link rel="prev" href="./fix_footer.html" />
+    <link rel="prev" href="./c_mic_share_pointer.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="ubuntu"
-        data-filepath="ubuntu.md"
+        data-level="1.2.14"
+        data-chapter-title="共享内存: 使用二维指针"
+        data-filepath="c_mic_share_pointer2.md"
         data-basepath="."
         data-revision="Tue Dec 08 2015 22:47:27 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -392,7 +392,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.14" data-path="c_mic_share_pointer2.html">
+        <li class="chapter active" data-level="1.2.14" data-path="c_mic_share_pointer2.html">
             
                 
                     <a href="./c_mic_share_pointer2.html">
@@ -741,7 +741,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="ubuntu.html">
+        <li class="chapter " data-level="3" data-path="ubuntu.html">
             
                 
                     <a href="./ubuntu.html">
@@ -825,11 +825,49 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="ubuntu">ubuntu</h1>
-<ul>
-<li><a href="ubuntu_desktop.html">&#x521B;&#x5EFA;&#x684C;&#x9762;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;</a></li>
-<li><a href="ubuntu_shell.html">&#x7F16;&#x5199;shell&#x811A;&#x672C;</a></li>
-</ul>
+                        <h2 id="&#x5171;&#x4EAB;&#x5185;&#x5B58;-&#x4F7F;&#x7528;&#x4E8C;&#x7EF4;&#x6307;&#x9488;">&#x5171;&#x4EAB;&#x5185;&#x5B58;: &#x4F7F;&#x7528;&#x4E8C;&#x7EF4;&#x6307;&#x9488;</h2>
+<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-comment">/**
+ * &#x5728;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x6A21;&#x5F0F;&#x4E0B;&#x4F7F;&#x7528;&#x4E8C;&#x7EF4;&#x6307;&#x9488;
+ */</span>
+
+<span class="hljs-keyword">int</span> **_Cilk_shared p;
+_Cilk_shared <span class="hljs-keyword">int</span> n = <span class="hljs-number">3</span>, m = <span class="hljs-number">3</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init_p</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> index = <span class="hljs-number">0</span>, i, j;
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        <span class="hljs-keyword">for</span>( j = <span class="hljs-number">0</span>; j &lt; m; j++) {
+            p[i][j] = index++;
+        }
+    }
+}
+
+_<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> <span class="hljs-title">print_p</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i, j;
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        <span class="hljs-keyword">for</span>(j = <span class="hljs-number">0</span>; j &lt; n; j++) {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;print_p: p[%d][%d] is %d\n&quot;</span>, i, j, p[i][j]);
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i;
+    p = (<span class="hljs-keyword">int</span> **) _Offload_shared_malloc(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span> *) * n);
+    <span class="hljs-keyword">for</span>( i = <span class="hljs-number">0</span>; i &lt; n ;i++) {
+        p[i] =(<span class="hljs-keyword">int</span> *) _Offload_shared_malloc(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * m);
+    }
+
+    init_p();
+    _<span class="hljs-function">Cilk_offload <span class="hljs-title">print_p</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        _Offload_shared_free(p[i]);
+    }
+
+    _Offload_shared_free(p);
+}
+</code></pre>
 
                     
                     </section>
@@ -840,10 +878,10 @@
         </div>
 
         
-        <a href="./fix_footer.html" class="navigation navigation-prev " aria-label="Previous page: 底部固定"><i class="fa fa-angle-left"></i></a>
+        <a href="./c_mic_share_pointer.html" class="navigation navigation-prev " aria-label="Previous page: 共享内存: 使用指针"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./ubuntu_desktop.html" class="navigation navigation-next " aria-label="Next page: 创建桌面快捷方式"><i class="fa fa-angle-right"></i></a>
+        <a href="./c_mic_sync_compute.html" class="navigation navigation-next " aria-label="Next page: MIC和CPU异步计算"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

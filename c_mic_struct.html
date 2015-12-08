@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>ubuntu | code</title>
+        <title>传输结构体 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./ubuntu_desktop.html" />
+    <link rel="next" href="./c_mic_offload_into.html" />
     
     
-    <link rel="prev" href="./fix_footer.html" />
+    <link rel="prev" href="./c_mic_pointer2.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="3"
-        data-chapter-title="ubuntu"
-        data-filepath="ubuntu.md"
+        data-level="1.2.9"
+        data-chapter-title="传输结构体"
+        data-filepath="c_mic_struct.md"
         data-basepath="."
         data-revision="Tue Dec 08 2015 22:47:27 GMT+0800 (中国标准时间)"
         data-innerlanguage="">
@@ -317,7 +317,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.9" data-path="c_mic_struct.html">
+        <li class="chapter active" data-level="1.2.9" data-path="c_mic_struct.html">
             
                 
                     <a href="./c_mic_struct.html">
@@ -741,7 +741,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3" data-path="ubuntu.html">
+        <li class="chapter " data-level="3" data-path="ubuntu.html">
             
                 
                     <a href="./ubuntu.html">
@@ -825,11 +825,42 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="ubuntu">ubuntu</h1>
-<ul>
-<li><a href="ubuntu_desktop.html">&#x521B;&#x5EFA;&#x684C;&#x9762;&#x5FEB;&#x6377;&#x65B9;&#x5F0F;</a></li>
-<li><a href="ubuntu_shell.html">&#x7F16;&#x5199;shell&#x811A;&#x672C;</a></li>
-</ul>
+                        <h2 id="&#x8F93;&#x7ED3;&#x6784;&#x4F53;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x6307;&#x9488;">&#x8F93;&#x7ED3;&#x6784;&#x4F53;(&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x6307;&#x9488;)</h2>
+<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-comment">/**
+ * &#x4F20;&#x8F93;&#x5305;&#x542B;&#x6307;&#x9488;&#x53D8;&#x91CF;&#x7684;struct
+ */</span>
+
+<span class="hljs-keyword">struct</span> my_struct {
+    <span class="hljs-keyword">int</span> y;
+    <span class="hljs-keyword">int</span> *a;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">offload_struct</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">struct</span> my_struct m;
+    m.y = <span class="hljs-number">10</span>;
+    m.a =(<span class="hljs-keyword">int</span>*) <span class="hljs-built_in">calloc</span>(<span class="hljs-number">10</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>));
+
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+        m.a[i] = i;
+    }
+
+    <span class="hljs-comment">//struct&#x4E2D;&#x6709;&#x6307;&#x9488;&#x53D8;&#x91CF;&#x65F6;&#x8981;&#x5355;&#x72EC;&#x4F20;&#x6307;&#x9488;&#x53D8;&#x91CF;</span>
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> offload target(mic) in(m) in(m.a:length(<span class="hljs-number">10</span>))</span>
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;offload_struct: the struct.y is %d\n&quot;</span>, m.y);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;offload_struct: the struct.a[1] is %d\n&quot;</span>, m.a[<span class="hljs-number">1</span>]);
+    }
+    <span class="hljs-built_in">free</span>(m.a);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    offload_struct();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
 
                     
                     </section>
@@ -840,10 +871,10 @@
         </div>
 
         
-        <a href="./fix_footer.html" class="navigation navigation-prev " aria-label="Previous page: 底部固定"><i class="fa fa-angle-left"></i></a>
+        <a href="./c_mic_pointer2.html" class="navigation navigation-prev " aria-label="Previous page: 传输指针2"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./ubuntu_desktop.html" class="navigation navigation-next " aria-label="Next page: 创建桌面快捷方式"><i class="fa fa-angle-right"></i></a>
+        <a href="./c_mic_offload_into.html" class="navigation navigation-next " aria-label="Next page: 使用into"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
