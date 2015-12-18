@@ -6,6 +6,7 @@
 * [print_binary.c: 输出二进制](c/common/print_binary.c)
 * [dynamic_array.c: 动态定义数组](c/common/dynamic_array.c)
 * [timer.h: 程序计时](c/common/timer.h)
+* [file.c: 读写普通文件](c/common/file.c)
 
 ### mic
 * [helloworld.c: HelloWorld](c/mic/helloworld.c)
