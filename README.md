@@ -50,9 +50,15 @@
 
 
 ### threeJs
-* [dynamictexture.html: 在立方体上显示数字](html/html5/dynamictexture.html)
-* [dynamictexture2.html: 在立方体上显示不同数字](html/html5/dynamictexture2.html)
-* [dynamictexture3.html: 在立方体上显示数字，可加边框](html/html5/dynamictexture3.html)
+* [dynamictexture.html: 在立方体上显示数字](html/threejs/dynamictexture.html)
+* [dynamictexture2.html: 在立方体上显示不同数字](html/threejs/dynamictexture2.html)
+* [dynamictexture3.html: 在立方体上显示数字，可加边框](html/threejs/dynamictexture3.html)
+
+
+## java
+### common
+* [BWTCode.java: BWT编码](java/common/BWTCode.java)
+* [SortFile.java: 将读入的文件一行行的进行排序, 使用TreeMap](java/common/SortFile.java)
 
 ## ubuntu
 * [ubuntu_desktop.txt: 创建Ubuntu桌面快捷方式](ubuntu/ubuntu_desktop.txt)
