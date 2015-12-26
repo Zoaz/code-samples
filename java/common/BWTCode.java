@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+/**
+ * BWT编码
+ */
 public class BWTCode {
     public static void main(String[] args) {
         //String str = "GATCAAATGGGGGATCGATC";
