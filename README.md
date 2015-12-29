@@ -27,7 +27,7 @@
 * [sync_transfer.c: MIC和CPU异步数据传输](c/mic/sync_transfer.c)
 * [multi_declare.c: 同时声明多个可以MIC上使用的变量或者函数](c/mic/multi_declare.c)
 * [vector_hello.c: 向量化示例](c/mic/vector_hello.c)
-* [vector2.c: 一些向量化函数(epi32)的使用: 加 减 乘 与 或 非 异或 移位 alignr]
+* [vector2.c: 一些向量化函数(epi32)的使用: 加,减,乘,与,或,非,异或,移位,alignr](c/mic/vector2.c)
 
 ## html 
 ### common
