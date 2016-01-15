@@ -64,6 +64,7 @@
 ### Spring
 * [Spring MVC HelloWolrd](java/spring/mvc/helloworld)
 * [Spring MVC 文件上传简单示例](java/spring/mvc/uploadfile)
+* [Spring MVC Rest简单示例](java/spring/mvc/rest)
 
 ## ubuntu
 * [ubuntu_desktop.txt: 创建Ubuntu桌面快捷方式](ubuntu/ubuntu_desktop.txt)
