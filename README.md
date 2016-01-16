@@ -64,6 +64,7 @@
 ### Spring
 * [Spring MVC HelloWolrd](java/spring/mvc/helloworld)
 * [Spring MVC 文件上传简单示例](java/spring/mvc/uploadfile)
+* [Spring MVC 文件上传简单示例--整合bootstrap-fileinput](java/spring/mvc/uploadfile-bootstrap-fileinput)
 * [Spring MVC Rest简单示例](java/spring/mvc/rest)
 
 ## ubuntu
