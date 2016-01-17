@@ -1,7 +1,18 @@
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 
 *.iml
 
+classes/
 ## Directory-based project format:
 .idea/
 # if you remove the above rule, at least ignore the following:
@@ -10,6 +21,7 @@
 # .idea/workspace.xml
 # .idea/tasks.xml
 # .idea/dictionaries
+# .idea/shelf
 
 # Sensitive or high-churn files:
 # .idea/dataSources.ids
@@ -44,3 +56,4 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
+fabric.properties
