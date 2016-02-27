@@ -29,6 +29,11 @@
 * [vector_hello.c: 向量化示例](c/mic/vector_hello.c)
 * [vector2.c: 一些向量化函数(epi32)的使用: 加,减,乘,与,或,非,异或,移位,alignr](c/mic/vector2.c)
 
+### openmp
+* [parallel, for, section, singl, master, threadprivate 指令用法](c/openmp/omp_directive.c)
+* [shared, private, default, firstprivate, lastprivate, nowait, schedule, if, reduction, copyin, copyprivate, num_threads 子句用法](c/openmp/omp_clause.c)
+* [openmp函数用法](c/openmp/omp_function.md)
+* [同步相关指令和函数, 包括barrier, ordered, critical, atomic, lock](c/openmp/omp_sync.c)
 ## html 
 ### common
 * [avoidTextAround.html：防止文字环绕](html/common/avoidTextAround.html)
