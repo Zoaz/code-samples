@@ -34,6 +34,7 @@
 * [shared, private, default, firstprivate, lastprivate, nowait, schedule, if, reduction, copyin, copyprivate, num_threads 子句用法](c/openmp/omp_clause.c)
 * [openmp函数用法](c/openmp/omp_function.md)
 * [同步相关指令和函数, 包括barrier, ordered, critical, atomic, lock](c/openmp/omp_sync.c)
+
 ## html 
 ### common
 * [avoidTextAround.html：防止文字环绕](html/common/avoidTextAround.html)
