@@ -31,4 +31,21 @@
    now = t.tv_sec + t.tv_usec/1000000.0; \
 }
 
+/**
+ * 获得当前时间
+ *
+ *   int len = 10;
+ *   char buf[len];
+ *   NOW_TIME(buf, len);
+ *   printf("%s\n", buf);
+ *
+ */
+
+#define NOW_TIME(buf, len) { \
+    time_t nowtime; \
+    nowtime = time(NULL); \
+    struct tm *local; \
+    local = localtime(&nowtime); \
+    strftime(buf, len, "%H:%M:%S", local); \
+}
 #endif
