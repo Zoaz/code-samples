@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>bootstrap | code</title>
+        <title>部分子句用法 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./navigation.html" />
+    <link rel="next" href="./omp_function.html" />
     
     
-    <link rel="prev" href="./canvas_autofit.html" />
+    <link rel="prev" href="./ompdirective.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="2.3"
-        data-chapter-title="bootstrap"
-        data-filepath="bootstrap.md"
+        data-level="1.3.2"
+        data-chapter-title="部分子句用法"
+        data-filepath="omp_clause.md"
         data-basepath="."
         data-revision="Sat Feb 27 2016 20:00:49 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -518,7 +518,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="omp_clause.html">
+        <li class="chapter active" data-level="1.3.2" data-path="omp_clause.html">
             
                 
                     <a href="./omp_clause.html">
@@ -736,7 +736,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3" data-path="bootstrap.html">
+        <li class="chapter " data-level="2.3" data-path="bootstrap.html">
             
                 
                     <a href="./bootstrap.html">
@@ -993,14 +993,188 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="bootstrap">bootstrap</h1>
-<ul>
-<li><a href="navigation.html">&#x5BFC;&#x822A;&#x83DC;&#x5355;</a></li>
-<li><a href="switch.html">&#x5F00;&#x5173;&#x5207;&#x6362;</a></li>
-<li><a href="toaster.html">&#x4FE1;&#x606F;&#x63D0;&#x793A;</a></li>
-<li><a href="loading.html">&#x52A0;&#x8F7D;</a></li>
-<li><a href="fix_footer.html">&#x5E95;&#x90E8;&#x56FA;&#x5B9A;</a></li>
-</ul>
+                        <h2 id="&#x90E8;&#x5206;&#x5B50;&#x53E5;&#x7528;&#x6CD5;">&#x90E8;&#x5206;&#x5B50;&#x53E5;&#x7528;&#x6CD5;</h2>
+<p>&#x8BB0;&#x5F55; shared, private, default, firstprivate, lastprivate, nowait, schedule, if, reduction, copyin, copyprivate, num_threads &#x5B50;&#x53E5;&#x7528;&#x6CD5;</p>
+<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;omp.h&gt;</span></span>
+
+<span class="hljs-comment">/**
+ * &#x8BB0;&#x5F55;openmp&#x4E2D;&#x5B50;&#x53E5;&#x7684;&#x7528;&#x6CD5;
+ *
+ * &#x5305;&#x62EC;shared, private, default, firstprivate, lastprivate, nowait, schedule, if, reduction, copyin, copyprivate, num_threads
+ */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_shared_private_default</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i, n = <span class="hljs-number">10</span>;
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel for default(none) \
+    private(i) shared(n)</span>
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d execute loop %d\n&quot;</span>,  omp_get_thread_num(), i);
+    }
+
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_firstprivate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> n = <span class="hljs-number">8</span>;
+    <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>, a[n];
+
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n ;i++) {
+        a[i] = i+<span class="hljs-number">1</span>;
+    }
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel for private(i) firstprivate(a)</span>
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i&lt;n; i++)
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d: a[%d] is %d\n&quot;</span>, omp_get_thread_num(), i, a[i]);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_lastprivate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> n = <span class="hljs-number">8</span>;
+    <span class="hljs-keyword">int</span> i, a = <span class="hljs-number">3</span>;
+    <span class="hljs-comment">// lastprivate &#x5C06;for&#x4E2D;&#x6700;&#x540E;&#x4E00;&#x6B21;&#x5FAA;&#x73AF;(i == n-1) a &#x7684;&#x503C;&#x8D4B;&#x7ED9;a    </span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel for private(i) lastprivate(a)</span>
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i&lt;n; i++)
+    {
+        a = i+<span class="hljs-number">1</span>;
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;In for: thread %d has a value of a = %d for i = %d\n&quot;</span>, omp_get_thread_num(),a,i);
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Out for: thread %d has a value of a = %d\n&quot;</span>, omp_get_thread_num(),a);
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+    <span class="hljs-comment">// lastprivate &#x5C06;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x5305;&#x542B;a&#x7684;section&#x7684;&#x4E2D;a &#x7684;&#x503C;&#x8D4B;&#x7ED9;a    </span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel sections private(i) lastprivate(a)</span>
+    {
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp section</span>
+        {
+            a = <span class="hljs-number">1</span>;
+        }
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp section</span>
+        {
+            a = <span class="hljs-number">5</span>;
+        }
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;after section: thread  %d has a value of a = %d\n&quot;</span>, omp_get_thread_num(),a);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_nowait</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i, n =<span class="hljs-number">6</span>;
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel </span>
+    {
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp for nowait</span>
+        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d: ++++\n&quot;</span>, omp_get_thread_num());
+        }
+
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp for</span>
+        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d: ----\n&quot;</span>, omp_get_thread_num());
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_schedule</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i, n = <span class="hljs-number">10</span>;
+
+    <span class="hljs-comment">// schedule &#x53D6;&#x503C; static, dynamic, guided, auto, runtime</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel for default(none) schedule(static, <span class="hljs-number">2</span>) \
+    private(i) shared(n)</span>
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Iteration %d executed by thread %d\n&quot;</span>, i, omp_get_thread_num());
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_if</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> n = <span class="hljs-number">1</span>, tid;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;n = 1\n&quot;</span>);
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel <span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">5</span>) default(none) \
+    private(tid) shared(n)</span>
+    {
+        tid = omp_get_thread_num();
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d is running\n&quot;</span>, tid);
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+    n = <span class="hljs-number">10</span>;
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;n = 10\n&quot;</span>);
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel <span class="hljs-keyword">if</span>(n&gt;<span class="hljs-number">5</span>) default(none) \
+    private(tid) shared(n)</span>
+    {
+        tid = omp_get_thread_num();
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d is running\n&quot;</span>, tid);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_reduction</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> sum, i;
+    <span class="hljs-keyword">int</span> n = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">int</span> a[n];
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        a[i] = (i+<span class="hljs-number">1</span>);
+    }
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel for default(none) \
+    private(i) shared(a,n) reduction(+:sum)</span>
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        sum += a[i];
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sum is %d\n&quot;</span>, sum);
+}
+
+<span class="hljs-keyword">int</span> counter = <span class="hljs-number">10</span>;
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp threadprivate(counter)</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_copyin</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;counter is %d\n&quot;</span>, counter);
+    <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel copyin(counter) </span>
+    {
+
+        counter = omp_get_thread_num() + counter + <span class="hljs-number">1</span>;
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d : counter is %d\n&quot;</span>, omp_get_thread_num(), counter);
+    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;counter is %d\n&quot;</span>, counter);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_copyprivate</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i;
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel private(i)</span>
+    {
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp single copyprivate(i, counter) </span>
+        {
+            i = <span class="hljs-number">50</span>;
+            counter = <span class="hljs-number">100</span>;
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d execute single\n&quot;</span>, omp_get_thread_num());
+        }
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d: i is %d and counter is %d\n&quot;</span>,omp_get_thread_num(), i, counter);
+    }
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">omp_num_threads</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel num_threads(<span class="hljs-number">2</span>)</span>
+    {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;thread %d is running\n&quot;</span>, omp_get_thread_num());
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// omp_shared_private_default();</span>
+    <span class="hljs-comment">// omp_firstprivate();</span>
+    <span class="hljs-comment">// omp_lastprivate();</span>
+    <span class="hljs-comment">// omp_nowait();</span>
+    <span class="hljs-comment">// omp_schedule();</span>
+    <span class="hljs-comment">// omp_if();</span>
+    <span class="hljs-comment">// omp_reduction();</span>
+    <span class="hljs-comment">// omp_copyin();</span>
+    <span class="hljs-comment">// omp_copyprivate();</span>
+    omp_num_threads();
+}
+</code></pre>
 
                     
                     </section>
@@ -1011,10 +1185,10 @@
         </div>
 
         
-        <a href="./canvas_autofit.html" class="navigation navigation-prev " aria-label="Previous page: canvas自适应"><i class="fa fa-angle-left"></i></a>
+        <a href="./ompdirective.html" class="navigation navigation-prev " aria-label="Previous page: 部分指令用法"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./navigation.html" class="navigation navigation-next " aria-label="Next page: 导航菜单"><i class="fa fa-angle-right"></i></a>
+        <a href="./omp_function.html" class="navigation navigation-next " aria-label="Next page: 函数用法"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

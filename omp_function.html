@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>bootstrap | code</title>
+        <title>函数用法 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./navigation.html" />
+    <link rel="next" href="./omp_sync.html" />
     
     
-    <link rel="prev" href="./canvas_autofit.html" />
+    <link rel="prev" href="./omp_clause.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="2.3"
-        data-chapter-title="bootstrap"
-        data-filepath="bootstrap.md"
+        data-level="1.3.3"
+        data-chapter-title="函数用法"
+        data-filepath="omp_function.md"
         data-basepath="."
         data-revision="Sat Feb 27 2016 20:00:49 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -533,7 +533,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="omp_function.html">
+        <li class="chapter active" data-level="1.3.3" data-path="omp_function.html">
             
                 
                     <a href="./omp_function.html">
@@ -736,7 +736,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3" data-path="bootstrap.html">
+        <li class="chapter " data-level="2.3" data-path="bootstrap.html">
             
                 
                     <a href="./bootstrap.html">
@@ -993,14 +993,38 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="bootstrap">bootstrap</h1>
-<ul>
-<li><a href="navigation.html">&#x5BFC;&#x822A;&#x83DC;&#x5355;</a></li>
-<li><a href="switch.html">&#x5F00;&#x5173;&#x5207;&#x6362;</a></li>
-<li><a href="toaster.html">&#x4FE1;&#x606F;&#x63D0;&#x793A;</a></li>
-<li><a href="loading.html">&#x52A0;&#x8F7D;</a></li>
-<li><a href="fix_footer.html">&#x5E95;&#x90E8;&#x56FA;&#x5B9A;</a></li>
-</ul>
+                        <h2 id="&#x51FD;&#x6570;&#x7528;&#x6CD5;">&#x51FD;&#x6570;&#x7528;&#x6CD5;</h2>
+<p>&#x8BB0;&#x5F55;openmp&#x5B9A;&#x4E49;&#x7684;&#x4E00;&#x4E9B;&#x51FD;&#x6570;&#x7684;&#x7528;&#x6CD5;</p>
+<pre><code class="lang-C"><span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;</span>
+omp_set_num_threads(number)
+
+<span class="hljs-comment">// &#x83B7;&#x5F97;&#x8FD0;&#x884C;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;, &#x5728;&#x5E76;&#x884C;&#x57DF;&#x5916;&#x6267;&#x884C;&#x8FD4;&#x56DE;1 </span>
+omp_get_num_threads()
+
+<span class="hljs-comment">// &#x83B7;&#x5F97;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x6700;&#x5927;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;, &#x6570;&#x91CF;&#x662F;&#x786E;&#x5B9A;&#x7684;, &#x4E0E;&#x5728;&#x4E32;&#x884C;&#x57DF;&#x8FD8;&#x662F;&#x5E76;&#x884C;&#x57DF;&#x8C03;&#x7528;&#x65E0;&#x5173;</span>
+omp_get_max_threads()
+
+<span class="hljs-comment">// &#x83B7;&#x5F97;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7F16;&#x53F7;</span>
+omp_get_thread_num()
+
+<span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x8C03;&#x6574;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;</span>
+omp_set_dynamic(<span class="hljs-number">0</span>&#x6216;<span class="hljs-number">1</span>)
+
+<span class="hljs-comment">// &#x83B7;&#x5F97;&#x5F53;&#x524D;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x52A8;&#x6001;&#x8C03;&#x6574;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;, &#x8FD4;&#x56DE;0&#x6216;1</span>
+omp_get_dynamic()
+
+<span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x5D4C;&#x5957;&#x5E76;&#x884C;</span>
+omp_set_nested(<span class="hljs-number">0</span>&#x6216;<span class="hljs-number">1</span>)
+
+<span class="hljs-comment">// &#x83B7;&#x5F97;&#x5F53;&#x524D;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x5D4C;&#x5957;&#x5E76;&#x884C;, &#x8FD4;&#x56DE;0&#x6216;1</span>
+omp_get_nested()
+
+<span class="hljs-comment">// &#x83B7;&#x5F97;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5904;&#x7406;&#x5668;&#x6570;&#x91CF;</span>
+omp_get_num_procs()
+
+<span class="hljs-comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x5728;&#x4E00;&#x4E2A;&#x6D3B;&#x8DC3;&#x7684;&#x5E76;&#x884C;&#x57DF;&#x5185;, &#x8FD4;&#x56DE;0&#x6216;1</span>
+omp_in_parallel()
+</code></pre>
 
                     
                     </section>
@@ -1011,10 +1035,10 @@
         </div>
 
         
-        <a href="./canvas_autofit.html" class="navigation navigation-prev " aria-label="Previous page: canvas自适应"><i class="fa fa-angle-left"></i></a>
+        <a href="./omp_clause.html" class="navigation navigation-prev " aria-label="Previous page: 部分子句用法"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./navigation.html" class="navigation navigation-next " aria-label="Next page: 导航菜单"><i class="fa fa-angle-right"></i></a>
+        <a href="./omp_sync.html" class="navigation navigation-next " aria-label="Next page: 同步"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

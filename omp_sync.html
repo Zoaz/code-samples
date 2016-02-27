@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>bootstrap | code</title>
+        <title>同步 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./navigation.html" />
+    <link rel="next" href="./html.html" />
     
     
-    <link rel="prev" href="./canvas_autofit.html" />
+    <link rel="prev" href="./omp_function.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="2.3"
-        data-chapter-title="bootstrap"
-        data-filepath="bootstrap.md"
+        data-level="1.3.4"
+        data-chapter-title="同步"
+        data-filepath="omp_sync.md"
         data-basepath="."
         data-revision="Sat Feb 27 2016 20:00:49 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -548,7 +548,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.4" data-path="omp_sync.html">
+        <li class="chapter active" data-level="1.3.4" data-path="omp_sync.html">
             
                 
                     <a href="./omp_sync.html">
@@ -736,7 +736,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3" data-path="bootstrap.html">
+        <li class="chapter " data-level="2.3" data-path="bootstrap.html">
             
                 
                     <a href="./bootstrap.html">
@@ -993,14 +993,121 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="bootstrap">bootstrap</h1>
-<ul>
-<li><a href="navigation.html">&#x5BFC;&#x822A;&#x83DC;&#x5355;</a></li>
-<li><a href="switch.html">&#x5F00;&#x5173;&#x5207;&#x6362;</a></li>
-<li><a href="toaster.html">&#x4FE1;&#x606F;&#x63D0;&#x793A;</a></li>
-<li><a href="loading.html">&#x52A0;&#x8F7D;</a></li>
-<li><a href="fix_footer.html">&#x5E95;&#x90E8;&#x56FA;&#x5B9A;</a></li>
-</ul>
+                        <h2 id="&#x540C;&#x6B65;">&#x540C;&#x6B65;</h2>
+<p>&#x8BB0;&#x5F55;&#x4E00;&#x4E9B;&#x540C;&#x6B65;&#x76F8;&#x5173;&#x7684;&#x6307;&#x4EE4;&#x6216;&#x8005;&#x51FD;&#x6570;, &#x5305;&#x62EC;barrier, ordered, critical, atomic, lock , <a href="c_c_timer.html">&#x8FD9;&#x91CC;</a>&#x662F;timer.h&#x7684;&#x6E90;&#x7801;</p>
+<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;omp.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;timer.h&quot;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print_time</span><span class="hljs-params">(<span class="hljs-keyword">int</span> tid, <span class="hljs-keyword">char</span>* s )</span> </span>{
+    <span class="hljs-keyword">int</span> len = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">char</span> buf[len];
+    NOW_TIME(buf, len);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread %d %s at %s\n&quot;</span>, tid, s, buf);
+
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_barrier</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> tid;
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel private(tid)</span>
+    {
+        tid = omp_get_thread_num();
+        <span class="hljs-keyword">if</span>(tid &lt; omp_get_num_threads() / <span class="hljs-number">2</span>)
+            system(<span class="hljs-string">&quot;sleep 3&quot;</span>);
+        print_time(tid, <span class="hljs-string">&quot;before barrier &quot;</span>);
+
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp barrier</span>
+
+        print_time(tid, <span class="hljs-string">&quot;after  barrier &quot;</span>);
+    }
+
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_order</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> i, tid, n = <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">int</span> a[n];
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        a[i] = <span class="hljs-number">0</span>;
+    }
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel for default(none) ordered  schedule(dynamic) \
+    private (i, tid) shared(n, a)</span>
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        tid = omp_get_thread_num();
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread %d updates a[%d]\n&quot;</span>, tid, i);
+
+        a[i] += i;
+
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp ordered</span>
+        {
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread %d printf value of a[%d] = %d\n&quot;</span>, tid, i, a[i]);
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_critical</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> n = <span class="hljs-number">100</span>, sum = <span class="hljs-number">0</span>, sumLocal, i, tid;
+    <span class="hljs-keyword">int</span> a[n];
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        a[i] = i;
+    }
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel shared(n, a, sum) private (tid, sumLocal)</span>
+    {
+        tid = omp_get_thread_num();
+        sumLocal = <span class="hljs-number">0</span>;
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp for</span>
+        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            sumLocal += a[i];
+        }
+
+        <span class="hljs-comment">//#pragma omp critical(update_sum) </span>
+        {
+            sum += sumLocal;
+            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread %d: sumLocal = %d sum =%d\n&quot;</span>, tid, sumLocal, sum);
+        }
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Value of sum after parallel region: %d\n&quot;</span>,sum);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_atomic</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> counter=<span class="hljs-number">0</span>, n = <span class="hljs-number">1000000</span>, i;
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel for shared(counter, n)</span>
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        <span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp atomic</span>
+        counter += <span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;counter is %d\n&quot;</span>, counter);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_lock</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">omp_lock_t</span> lock;
+    <span class="hljs-keyword">int</span> i,n = <span class="hljs-number">4</span>;
+    omp_init_lock(&amp;lock);
+<span class="hljs-preprocessor">#<span class="hljs-keyword">pragma</span> omp parallel for</span>
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+        omp_set_lock(&amp;lock);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread %d: +\n&quot;</span>, omp_get_thread_num());
+        system(<span class="hljs-string">&quot;sleep 0.1&quot;</span>);
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Thread %d: -\n&quot;</span>, omp_get_thread_num());
+        omp_unset_lock(&amp;lock);
+    }
+    omp_destroy_lock(&amp;lock);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">//test_barrier();</span>
+    <span class="hljs-comment">//test_order();</span>
+    <span class="hljs-comment">//test_critical();</span>
+    <span class="hljs-comment">//test_atomic();</span>
+    <span class="hljs-comment">//test_lock();</span>
+    test_master();
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
 
                     
                     </section>
@@ -1011,10 +1118,10 @@
         </div>
 
         
-        <a href="./canvas_autofit.html" class="navigation navigation-prev " aria-label="Previous page: canvas自适应"><i class="fa fa-angle-left"></i></a>
+        <a href="./omp_function.html" class="navigation navigation-prev " aria-label="Previous page: 函数用法"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./navigation.html" class="navigation navigation-next " aria-label="Next page: 导航菜单"><i class="fa fa-angle-right"></i></a>
+        <a href="./html.html" class="navigation navigation-next " aria-label="Next page: html"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
