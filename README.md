@@ -11,7 +11,7 @@
     - [threeJs](#threeJs)
 + [java](#java)
     - [common](#common-2)
-    - [Spring](#pring)
+    - [Spring](#spring)
 + [ubuntu](#ubuntu)
     
 ## c
