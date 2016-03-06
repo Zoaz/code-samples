@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>打印二进制 | code</title>
+        <title>io | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./c_dynamic_array.html" />
+    <link rel="next" href="./c_io_text.html" />
     
     
-    <link rel="prev" href="./c_common.html" />
+    <link rel="prev" href="./c_common_command.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="1.1.1"
-        data-chapter-title="打印二进制"
-        data-filepath="c_print_binary.md"
+        data-level="1.2"
+        data-chapter-title="io"
+        data-filepath="c_io.md"
         data-basepath="."
         data-revision="Sun Mar 06 2016 11:19:04 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -116,7 +116,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.1.1" data-path="c_print_binary.html">
+        <li class="chapter " data-level="1.1.1" data-path="c_print_binary.html">
             
                 
                     <a href="./c_print_binary.html">
@@ -196,7 +196,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="c_io.html">
+        <li class="chapter active" data-level="1.2" data-path="c_io.html">
             
                 
                     <a href="./c_io.html">
@@ -1059,51 +1059,12 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="&#x6253;&#x5370;&#x4E8C;&#x8FDB;&#x5236;">&#x6253;&#x5370;&#x4E8C;&#x8FDB;&#x5236;</h2>
-<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdint.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
-
-<span class="hljs-comment">/*
- * &#x6253;&#x5370;&#x4E8C;&#x8FDB;&#x5236;
- * t: &#x8981;&#x6253;&#x5370;&#x7684;&#x6570;&#x5B57;
- * bit_len: &#x4E8C;&#x8FDB;&#x5236;&#x7684;&#x957F;&#x5EA6;,&#x4E0D;&#x8981;&#x8D85;&#x8FC7;64&#x4F4D;
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print_binary</span><span class="hljs-params">(uint64_t t, <span class="hljs-keyword">int</span> bit_len)</span> </span>{
-    <span class="hljs-keyword">short</span> buffer[bit_len];
-    <span class="hljs-keyword">int</span> i;
-
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; bit_len; i++) {
-        buffer[i] = <span class="hljs-number">0</span>;
-    }
-
-    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; bit_len; i++) {
-        <span class="hljs-keyword">if</span> (t == <span class="hljs-number">0</span>)
-            <span class="hljs-keyword">break</span>;
-        <span class="hljs-keyword">if</span> (t % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
-            buffer[i] = <span class="hljs-number">0</span>;
-        } <span class="hljs-keyword">else</span> {
-            buffer[i] = <span class="hljs-number">1</span>;
-        }
-        t = t / <span class="hljs-number">2</span>;
-    }
-    <span class="hljs-keyword">for</span> (i = bit_len - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%hd&quot;</span>, buffer[i]);
-    }
-}
-
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    print_binary(<span class="hljs-number">1234</span>, <span class="hljs-number">8</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
-    print_binary(<span class="hljs-number">1234</span>, <span class="hljs-number">16</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
-    print_binary(<span class="hljs-number">1234</span>, <span class="hljs-number">32</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
-    print_binary(<span class="hljs-number">1234</span>, <span class="hljs-number">64</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
-}
-</code></pre>
+                        <h2 id="&#x8BFB;&#x5199;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;">&#x8BFB;&#x5199;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;</h2>
+<ul>
+<li><a href="c_io_text.html">&#x8BFB;&#x5199;&#x6587;&#x672C;&#x6587;&#x4EF6; - fputc, fputs, fprintf, fgetc, fgets, fscanf</a> </li>
+<li><a href="c_io_binary">&#x8BFB;&#x5199;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6; - fseek, ftell, fread, fwrite, rewind</a></li>
+<li><a href="c_io_stat.html">&#x83B7;&#x5F97;&#x6587;&#x4EF6;&#x4FE1;&#x606F; - stat</a></li>
+</ul>
 
                     
                     </section>
@@ -1114,10 +1075,10 @@
         </div>
 
         
-        <a href="./c_common.html" class="navigation navigation-prev " aria-label="Previous page: common"><i class="fa fa-angle-left"></i></a>
+        <a href="./c_common_command.html" class="navigation navigation-prev " aria-label="Previous page: 解析命名行参数"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./c_dynamic_array.html" class="navigation navigation-next " aria-label="Next page: 动态定义数组"><i class="fa fa-angle-right"></i></a>
+        <a href="./c_io_text.html" class="navigation navigation-next " aria-label="Next page: 读写文本文件"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

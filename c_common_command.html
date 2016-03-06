@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>打印二进制 | code</title>
+        <title>解析命名行参数 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./c_dynamic_array.html" />
+    <link rel="next" href="./c_io.html" />
     
     
-    <link rel="prev" href="./c_common.html" />
+    <link rel="prev" href="./c_c_timer.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="1.1.1"
-        data-chapter-title="打印二进制"
-        data-filepath="c_print_binary.md"
+        data-level="1.1.5"
+        data-chapter-title="解析命名行参数"
+        data-filepath="c_common_command.md"
         data-basepath="."
         data-revision="Sun Mar 06 2016 11:19:04 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -116,7 +116,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.1.1" data-path="c_print_binary.html">
+        <li class="chapter " data-level="1.1.1" data-path="c_print_binary.html">
             
                 
                     <a href="./c_print_binary.html">
@@ -176,7 +176,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.5" data-path="c_common_command.html">
+        <li class="chapter active" data-level="1.1.5" data-path="c_common_command.html">
             
                 
                     <a href="./c_common_command.html">
@@ -1059,49 +1059,149 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="&#x6253;&#x5370;&#x4E8C;&#x8FDB;&#x5236;">&#x6253;&#x5370;&#x4E8C;&#x8FDB;&#x5236;</h2>
-<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdint.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+                        <h2 id="&#x89E3;&#x6790;&#x547D;&#x540D;&#x884C;&#x53C2;&#x6570;">&#x89E3;&#x6790;&#x547D;&#x540D;&#x884C;&#x53C2;&#x6570;</h2>
+<p>&#x5177;&#x4F53;&#x4ECB;&#x7ECD;&#x53EF;&#x67E5;&#x770B;<a href="http://blog.zhangjikai.com/2016/03/05/%E3%80%90C%E3%80%91%E8%A7%A3%E6%9E%90%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0--getopt%E5%92%8Cgetopt_long/" target="_blank">&#x8FD9;&#x91CC;</a></p>
+<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;getopt.h&gt;</span></span>
 
-<span class="hljs-comment">/*
- * &#x6253;&#x5370;&#x4E8C;&#x8FDB;&#x5236;
- * t: &#x8981;&#x6253;&#x5370;&#x7684;&#x6570;&#x5B57;
- * bit_len: &#x4E8C;&#x8FDB;&#x5236;&#x7684;&#x957F;&#x5EA6;,&#x4E0D;&#x8981;&#x8D85;&#x8FC7;64&#x4F4D;
+<span class="hljs-comment">/**
+ * &#x89E3;&#x6790;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570; getopt &#x548C; getopt_long &#x7528;&#x6CD5;
  */</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print_binary</span><span class="hljs-params">(uint64_t t, <span class="hljs-keyword">int</span> bit_len)</span> </span>{
-    <span class="hljs-keyword">short</span> buffer[bit_len];
-    <span class="hljs-keyword">int</span> i;
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; bit_len; i++) {
-        buffer[i] = <span class="hljs-number">0</span>;
-    }
-
-    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; bit_len; i++) {
-        <span class="hljs-keyword">if</span> (t == <span class="hljs-number">0</span>)
-            <span class="hljs-keyword">break</span>;
-        <span class="hljs-keyword">if</span> (t % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
-            buffer[i] = <span class="hljs-number">0</span>;
-        } <span class="hljs-keyword">else</span> {
-            buffer[i] = <span class="hljs-number">1</span>;
+<span class="hljs-comment">// &#x89E3;&#x6790;&#x77ED;&#x9009;&#x9879;</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">use_getopt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span> </span>{
+    <span class="hljs-keyword">int</span> ch;
+    opterr = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>((ch = getopt(argc, argv, <span class="hljs-string">&quot;a:b&quot;</span>)) != -<span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">switch</span>(ch) {
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;a&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;option a: %s\n&quot;</span>, optarg);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;b&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;option b \n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;?&apos;</span>: <span class="hljs-comment">// &#x8F93;&#x5165;&#x4E3A;&#x5B9A;&#x4E49;&#x7684;&#x9009;&#x9879;, &#x90FD;&#x4F1A;&#x5C06;&#x8BE5;&#x9009;&#x9879;&#x7684;&#x503C;&#x53D8;&#x4E3A; ?</span>
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;unknown option \n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;default \n&quot;</span>);
         }
-        t = t / <span class="hljs-number">2</span>;
     }
-    <span class="hljs-keyword">for</span> (i = bit_len - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%hd&quot;</span>, buffer[i]);
+
+}
+
+<span class="hljs-comment">// &#x89E3;&#x6790;&#x957F;&#x9009;&#x9879;</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">use_getpot_long</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *optstring = <span class="hljs-string">&quot;vn:h&quot;</span>;
+    <span class="hljs-keyword">int</span> c;
+    <span class="hljs-keyword">struct</span> option opts[] = {
+        {<span class="hljs-string">&quot;version&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-string">&apos;v&apos;</span>},
+        {<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-string">&apos;n&apos;</span>},
+        {<span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-string">&apos;h&apos;</span>}
+    };
+
+    <span class="hljs-keyword">while</span>((c = getopt_long(argc, argv, optstring, opts, <span class="hljs-literal">NULL</span>)) != -<span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">switch</span>(c) {
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;n&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;username is %s\n&quot;</span>, optarg);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;v&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;version is 0.0.1\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;h&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;this is help\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;?&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;unknown option\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span> :
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;the return val is 0\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;------\n&quot;</span>);
+
+        }
     }
 }
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-    print_binary(<span class="hljs-number">1234</span>, <span class="hljs-number">8</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
-    print_binary(<span class="hljs-number">1234</span>, <span class="hljs-number">16</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
-    print_binary(<span class="hljs-number">1234</span>, <span class="hljs-number">32</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
-    print_binary(<span class="hljs-number">1234</span>, <span class="hljs-number">64</span>);
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">use_getpot_long2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *optstring = <span class="hljs-string">&quot;vn:h&quot;</span>;
+    <span class="hljs-keyword">int</span> c;
+
+    <span class="hljs-keyword">int</span> f_v = -<span class="hljs-number">1</span>, f_n = -<span class="hljs-number">1</span>, f_h = -<span class="hljs-number">1</span>, opt_index = -<span class="hljs-number">1</span>; 
+    <span class="hljs-keyword">struct</span> option opts[] = {
+        {<span class="hljs-string">&quot;version&quot;</span>, <span class="hljs-number">0</span>, &amp;f_v, <span class="hljs-string">&apos;v&apos;</span>},
+        {<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-number">1</span>, &amp;f_n, <span class="hljs-string">&apos;n&apos;</span>},
+        {<span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-number">0</span>, &amp;f_h, <span class="hljs-string">&apos;h&apos;</span>}
+    };
+
+    <span class="hljs-keyword">while</span>((c = getopt_long(argc, argv, optstring, opts, &amp;opt_index)) != -<span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">switch</span>(c) {
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;n&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;username is %s\n&quot;</span>, optarg);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;v&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;version is 0.0.1\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;h&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;this is help\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;?&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;unknown option\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span> :
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;f_v is %d \n&quot;</span>, f_v);
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;f_n is %d \n&quot;</span>, f_n);
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;f_h is %d \n&quot;</span>, f_h);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;------\n&quot;</span>);
+        }
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;opt_index is %d\n\n&quot;</span>, opt_index);
+    }
+}
+
+<span class="hljs-comment">// &#x548C;getopt_long&#x7C7B;&#x4F3C;, &#x4E0D;&#x540C;&#x7684;&#x662F;getopt_long_only &#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x957F;&#x9009;&#x9879;&#x524D;&#x9762;&#x8DDF; - </span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">use_getpot_long_only</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *optstring = <span class="hljs-string">&quot;vn:h&quot;</span>;
+    <span class="hljs-keyword">int</span> c;
+    <span class="hljs-keyword">struct</span> option opts[] = {
+        {<span class="hljs-string">&quot;version&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-string">&apos;v&apos;</span>},
+        {<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-string">&apos;n&apos;</span>},
+        {<span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-string">&apos;h&apos;</span>}
+    };
+
+    <span class="hljs-keyword">while</span>((c = getopt_long_only(argc, argv, optstring, opts, <span class="hljs-literal">NULL</span>)) != -<span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">switch</span>(c) {
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;n&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;username is %s\n&quot;</span>, optarg);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;v&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;version is 0.0.1\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;h&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;this is help\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">&apos;?&apos;</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;unknown option\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span> :
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;the return val is 0\n&quot;</span>);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;------\n&quot;</span>);
+
+        }
+    }
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span> </span>{
+    <span class="hljs-comment">//use_getpot_long(argc, argv);</span>
+    use_getopt(argc, argv)
 }
 </code></pre>
 
@@ -1114,10 +1214,10 @@
         </div>
 
         
-        <a href="./c_common.html" class="navigation navigation-prev " aria-label="Previous page: common"><i class="fa fa-angle-left"></i></a>
+        <a href="./c_c_timer.html" class="navigation navigation-prev " aria-label="Previous page: 程序计时"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./c_dynamic_array.html" class="navigation navigation-next " aria-label="Next page: 动态定义数组"><i class="fa fa-angle-right"></i></a>
+        <a href="./c_io.html" class="navigation navigation-next " aria-label="Next page: io"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
