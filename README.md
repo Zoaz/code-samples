@@ -3,7 +3,17 @@
     - [common](#common)
     - [io](#io)
     - [mic](#mic)
-
+    - [openmp](#openmp)
++ [html](#html)
+    - [common](#common-1)
+    - [bootstrap](#bootstrap)
+    - [html5](#html5)
+    - [threeJs](#threeJs)
++ [java](#java)
+    - [common](#common-2)
+    - [Spring](#Spring)
++ [ubuntu](#ubuntu)
+    
 ## c
 ### common
 * [printf_format.c: printf格式化输出示例](c/common/printf_format.c)
