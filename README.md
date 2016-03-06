@@ -1,4 +1,8 @@
 # 代码模版
++ [c](#c)
+    - [common](#common)
+    - [io](#io)
+    - [mic](#mic)
 
 ## c
 ### common
@@ -10,7 +14,7 @@
 
 ### io
 * [file_text.c: 读写文本文件 - fputc, fputs, fprintf, fgetc, fgets, fscanf](c/io/file_text.c)
-* [file_binary.c: 读写二进制文件 - fseek, ftell, fread, fwrite, rewind]](c/io/file_binary.c)
+* [file_binary.c: 读写二进制文件 - fseek, ftell, fread, fwrite, rewind](c/io/file_binary.c)
 * [file_stat.c: 获得文件信息 - stat](c/io/file_stat.c)
 
 ### mic
