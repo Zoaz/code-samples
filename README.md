@@ -6,7 +6,12 @@
 * [print_binary.c: 输出二进制](c/common/print_binary.c)
 * [dynamic_array.c: 动态定义数组](c/common/dynamic_array.c)
 * [timer.h: 程序计时](c/common/timer.h)
-* [file.c: 读写普通文件](c/common/file.c)
+* [opt.c: 解析命令行参数](c/common/file.c)
+
+### io
+* [file_text.c: 读写文本文件 - fputc, fputs, fprintf, fgetc, fgets, fscanf](c/io/file_text.c)
+* [file_binary.c: 读写二进制文件 - fseek, ftell, fread, fwrite, rewind]](c/io/file_binary.c)
+* [file_stat.c: 获得文件信息 - stat](c/io/file_stat.c)
 
 ### mic
 * [helloworld.c: HelloWorld](c/mic/helloworld.c)
