@@ -12,7 +12,7 @@
     - [threeJs](#threeJs)
 + [java](#java)
     - [common](#common-2)
-    - [Spring](#Spring)
+    - [Spring](#spring)
 + [ubuntu](#ubuntu)
     
 ## c
@@ -21,7 +21,7 @@
 * [print_binary.c: 输出二进制](c/common/print_binary.c)
 * [dynamic_array.c: 动态定义数组](c/common/dynamic_array.c)
 * [timer.h: 程序计时](c/common/timer.h)
-* [opt.c: 解析命令行参数](c/common/file.c)
+* [opt.c: 解析命令行参数](c/common/opt.c)
 
 ### io
 * [file_text.c: 读写文本文件 - fputc, fputs, fprintf, fgetc, fgets, fscanf](c/io/file_text.c)
