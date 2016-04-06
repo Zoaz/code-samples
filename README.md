@@ -8,6 +8,7 @@
     - [common](#common-1)
     - [bootstrap](#bootstrap)
     - [html5](#html5)
+    - [jquery](#jquery)
     - [threeJs](#threeJs)
 + [java](#java)
     - [common](#common-2)
@@ -65,6 +66,7 @@
 ### bootstrap
 * [fix_footer.html: 底部固定](html/bootstrap/fix_footer.html)
 * [loading.html: 加载插件](html/bootstrap/loading.html)  
+* [modal.html: bootstrap弹窗](html/bootstrap/modal.html) 
 * [navigation.html: 导航示例](html/bootstrap/navigation.html)
 * [switch.html: 开关切换插件](html/bootstrap/switch.html)
 * [toaster.html: 信息提示插件](html/bootstrap/toaster.html)
@@ -74,6 +76,11 @@
 * [FixCanvasSizeOnDevice.html: 使Canvas适应不同设备](html/html5/FixCanvasSizeOnDevice.html)
 * [PrelaodImages.html: 预加载图片](html/html5/PreloadImages.html)
 
+### jquery
+* [jquery_qrcode.html: jquery 生成二维码](html/jquery/jquery_qrcode.html)
+* [jquery_upload_file.html: Jquery-upload-file插件使用示例](html/jquery/jquery_upload_file.html)
+* [jquery_upload_file_angular.md: Jquery-upload-file和angularjs集成](html/jquery/jquery_upload_file_angular.html)
+* [operate_dom.html: 操作dom元素](html/jquery/operate_dom.html)
 
 ### threeJs
 * [dynamictexture.html: 在立方体上显示数字](html/threejs/dynamictexture.html)
