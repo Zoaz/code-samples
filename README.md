@@ -13,7 +13,7 @@
 + [java](#java)
     - [common](#common-2)
     - [io](#io)
-    - [npl](#nlp)
+    - [nlp](#nlp)
     - [Spring](#spring)
         - [MVC](#mvc)
 + [ubuntu](#ubuntu)
