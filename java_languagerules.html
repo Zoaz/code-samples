@@ -1,0 +1,1409 @@
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>JLanguageTool 自定义规则示例 | code</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.4">
+        <meta name="author" content="zhangjikai">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search-pro/search-pro.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="./styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="./ubuntu.html" />
+    
+    
+    <link rel="prev" href="./java_languagetool.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3.3.2"
+        data-chapter-title="JLanguageTool 自定义规则示例"
+        data-filepath="java_languagerules.md"
+        data-basepath="."
+        data-revision="Thu Apr 07 2016 10:33:53 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        前言
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="c.html">
+            
+                
+                    <a href="./c.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        c
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="c_common.html">
+            
+                
+                    <a href="./c_common.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        common
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="c_print_binary.html">
+            
+                
+                    <a href="./c_print_binary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.</b>
+                        
+                        打印二进制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="c_dynamic_array.html">
+            
+                
+                    <a href="./c_dynamic_array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.</b>
+                        
+                        动态定义数组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="c_printf_format.html">
+            
+                
+                    <a href="./c_printf_format.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.</b>
+                        
+                        printf格式化输出
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="c_c_timer.html">
+            
+                
+                    <a href="./c_c_timer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.4.</b>
+                        
+                        程序计时
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="c_common_command.html">
+            
+                
+                    <a href="./c_common_command.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.5.</b>
+                        
+                        解析命名行参数
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="c_io.html">
+            
+                
+                    <a href="./c_io.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        io
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="c_io_text.html">
+            
+                
+                    <a href="./c_io_text.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.1.</b>
+                        
+                        读写文本文件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="c_io_binary.html">
+            
+                
+                    <a href="./c_io_binary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.2.</b>
+                        
+                        读写二进制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="c_io_stat.html">
+            
+                
+                    <a href="./c_io_stat.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.3.</b>
+                        
+                        获得文件信息
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="c_mic.html">
+            
+                
+                    <a href="./c_mic.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        mic
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="c_mic_helloworld.html">
+            
+                
+                    <a href="./c_mic_helloworld.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.1.</b>
+                        
+                        HelloWorld
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="c_mic_offloadh.html">
+            
+                
+                    <a href="./c_mic_offloadh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.2.</b>
+                        
+                        使用offload.h的api
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="c_mic_varfun.html">
+            
+                
+                    <a href="./c_mic_varfun.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.3.</b>
+                        
+                        定义在mic上使用的全局变量和函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="c_mic_transdata.html">
+            
+                
+                    <a href="./c_mic_transdata.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.4.</b>
+                        
+                        传输数据
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="c_mic_static.html">
+            
+                
+                    <a href="./c_mic_static.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.5.</b>
+                        
+                        传输一维静态数组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="c_mic_static2.html">
+            
+                
+                    <a href="./c_mic_static2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.6.</b>
+                        
+                        传输二维静态数组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="c_mic_pointer.html">
+            
+                
+                    <a href="./c_mic_pointer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.7.</b>
+                        
+                        传输指针
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="c_mic_pointer2.html">
+            
+                
+                    <a href="./c_mic_pointer2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.8.</b>
+                        
+                        传输指针2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="c_mic_struct.html">
+            
+                
+                    <a href="./c_mic_struct.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.9.</b>
+                        
+                        传输结构体
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="c_mic_offload_into.html">
+            
+                
+                    <a href="./c_mic_offload_into.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.10.</b>
+                        
+                        使用into
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="c_mic_allocfree.html">
+            
+                
+                    <a href="./c_mic_allocfree.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.11.</b>
+                        
+                        alloc_if and free_if
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="c_mic_share_varfun.html">
+            
+                
+                    <a href="./c_mic_share_varfun.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.12.</b>
+                        
+                        共享内存: 定义函数和变量
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="c_mic_share_pointer.html">
+            
+                
+                    <a href="./c_mic_share_pointer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.13.</b>
+                        
+                        共享内存: 使用指针
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="c_mic_share_pointer2.html">
+            
+                
+                    <a href="./c_mic_share_pointer2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.14.</b>
+                        
+                        共享内存: 使用二维指针
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="c_mic_sync_compute.html">
+            
+                
+                    <a href="./c_mic_sync_compute.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.15.</b>
+                        
+                        MIC和CPU异步计算
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="c_mic_sync_transfer.html">
+            
+                
+                    <a href="./c_mic_sync_transfer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.16.</b>
+                        
+                        MIC和CPU异步传输数据
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="c_mic_multi_declare.html">
+            
+                
+                    <a href="./c_mic_multi_declare.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.17.</b>
+                        
+                        同时声明多个在MIC上运行的函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="c_mic_vector_demo.html">
+            
+                
+                    <a href="./c_mic_vector_demo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.18.</b>
+                        
+                        向量化示例
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="openmp.html">
+            
+                
+                    <a href="./openmp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        openmp
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ompdirective.html">
+            
+                
+                    <a href="./ompdirective.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.1.</b>
+                        
+                        部分指令用法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="omp_clause.html">
+            
+                
+                    <a href="./omp_clause.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.2.</b>
+                        
+                        部分子句用法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="omp_function.html">
+            
+                
+                    <a href="./omp_function.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.3.</b>
+                        
+                        函数用法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="omp_sync.html">
+            
+                
+                    <a href="./omp_sync.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.4.</b>
+                        
+                        同步
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="html.html">
+            
+                
+                    <a href="./html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        html
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="common.html">
+            
+                
+                    <a href="./common.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        common
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="json_checkbox.html">
+            
+                
+                    <a href="./json_checkbox.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        根据json动态生成checkbox
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="center_content.html">
+            
+                
+                    <a href="./center_content.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        居中显示内容
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="avoid_text.html">
+            
+                
+                    <a href="./avoid_text.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        防止文字环绕
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="clear_float.html">
+            
+                
+                    <a href="./clear_float.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        清除浮动
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="flex.html">
+            
+                
+                    <a href="./flex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        Flex--圣杯布局
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="html5.html">
+            
+                
+                    <a href="./html5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        html5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="preload_image.html">
+            
+                
+                    <a href="./preload_image.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        预加载图片
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="canvas_autofit.html">
+            
+                
+                    <a href="./canvas_autofit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.2.</b>
+                        
+                        canvas自适应
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="bootstrap.html">
+            
+                
+                    <a href="./bootstrap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        bootstrap
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="navigation.html">
+            
+                
+                    <a href="./navigation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        导航菜单
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="switch.html">
+            
+                
+                    <a href="./switch.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        开关切换
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="toaster.html">
+            
+                
+                    <a href="./toaster.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        信息提示
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="loading.html">
+            
+                
+                    <a href="./loading.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.4.</b>
+                        
+                        加载
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="fix_footer.html">
+            
+                
+                    <a href="./fix_footer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.5.</b>
+                        
+                        底部固定
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.6" data-path="bootstrap_modal.html">
+            
+                
+                    <a href="./bootstrap_modal.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.6.</b>
+                        
+                        弹窗
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="jquery.html">
+            
+                
+                    <a href="./jquery.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        jquery
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="jquery_qrcode.html">
+            
+                
+                    <a href="./jquery_qrcode.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.1.</b>
+                        
+                        生成二维码
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="jquery_uploadfile.html">
+            
+                
+                    <a href="./jquery_uploadfile.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.2.</b>
+                        
+                        Jquery-upload-file插件使用示例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" data-path="jquery_dom.html">
+            
+                
+                    <a href="./jquery_dom.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.3.</b>
+                        
+                        操作dom
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="java.html">
+            
+                
+                    <a href="./java.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        java
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="java_common.html">
+            
+                
+                    <a href="./java_common.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        common
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="java_c_bwt.html">
+            
+                
+                    <a href="./java_c_bwt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        BWT编码
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="java_c_filesort.html">
+            
+                
+                    <a href="./java_c_filesort.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        文件内容排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="java_encoding.html">
+            
+                
+                    <a href="./java_encoding.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        文件编码检查
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="java_enum.html">
+            
+                
+                    <a href="./java_enum.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.4.</b>
+                        
+                        枚举使用示例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="java_ip.html">
+            
+                
+                    <a href="./java_ip.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.</b>
+                        
+                        获得本机IP地址
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="java_getopt.html">
+            
+                
+                    <a href="./java_getopt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.6.</b>
+                        
+                        处理命令行参数
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="java_io.html">
+            
+                
+                    <a href="./java_io.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        io
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="java_filesend.html">
+            
+                
+                    <a href="./java_filesend.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        断点续传
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="java_nio2.html">
+            
+                
+                    <a href="./java_nio2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                        NIO2操作
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="java_nlp.html">
+            
+                
+                    <a href="./java_nlp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        nlp
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="java_languagetool.html">
+            
+                
+                    <a href="./java_languagetool.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        JLanguageTool使用示例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.3.2" data-path="java_languagerules.html">
+            
+                
+                    <a href="./java_languagerules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                        JLanguageTool 自定义规则示例
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="ubuntu.html">
+            
+                
+                    <a href="./ubuntu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        ubuntu
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="ubuntu_desktop.html">
+            
+                
+                    <a href="./ubuntu_desktop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        创建桌面快捷方式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="ubuntu_shell.html">
+            
+                
+                    <a href="./ubuntu_shell.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        编写shell脚本
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="ubuntu_ssh_login.html">
+            
+                
+                    <a href="./ubuntu_ssh_login.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        配置ssh免密码登录
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="ubuntu_icc.html">
+            
+                
+                    <a href="./ubuntu_icc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        配置icc
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本书使用 GitBook 发布
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >code</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="jlanguagetool-&#x81EA;&#x5B9A;&#x4E49;&#x89C4;&#x5219;&#x793A;&#x4F8B;">JLanguageTool &#x81EA;&#x5B9A;&#x4E49;&#x89C4;&#x5219;&#x793A;&#x4F8B;</h2>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="hljs-pi">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;xsd/print.xsl&quot; ?&gt;</span>
+<span class="hljs-pi">&lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;xsd/rules.css&quot;
+        title=&quot;Easy editing stylesheet&quot; ?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">rules</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">&quot;en&quot;</span> <span class="hljs-attribute">xsi:noNamespaceSchemaLocation</span>=<span class="hljs-value">&quot;xsd/rules.xsd&quot;</span> <span class="hljs-attribute">xmlns:xsi</span>=<span class="hljs-value">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;Verb&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;Possible Typo&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;misspelling&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">rule</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;ARE_SIX&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;Possible typo &apos;bed/bat(bad) English/...&apos;&quot;</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--&lt;pattern&gt;
+                &lt;token &gt;can&apos;t&lt;/token&gt;
+            &lt;/pattern&gt;--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">regexp</span>&gt;</span>can&apos;t<span class="hljs-tag">&lt;/<span class="hljs-title">regexp</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">message</span>&gt;</span>Did you mean <span class="hljs-tag">&lt;<span class="hljs-title">suggestion</span>&gt;</span>cannot<span class="hljs-tag">&lt;/<span class="hljs-title">suggestion</span>&gt;</span>?<span class="hljs-tag">&lt;/<span class="hljs-title">message</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">url</span>&gt;</span>http://some-server.org/the-bed-bad-error<span class="hljs-tag">&lt;/<span class="hljs-title">url</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">example</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;correct&quot;</span>&gt;</span>You
+                <span class="hljs-tag">&lt;<span class="hljs-title">marker</span>&gt;</span>cannot do this<span class="hljs-tag">&lt;/<span class="hljs-title">marker</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">example</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">example</span> <span class="hljs-attribute">correction</span>=<span class="hljs-value">&quot;bad&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;incorrect&quot;</span>&gt;</span>You
+                <span class="hljs-tag">&lt;<span class="hljs-title">marker</span>&gt;</span>can&apos;t<span class="hljs-tag">&lt;/<span class="hljs-title">marker</span>&gt;</span>do this <span class="hljs-tag">&lt;/<span class="hljs-title">example</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">rule</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">category</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">rules</span>&gt;</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./java_languagetool.html" class="navigation navigation-prev " aria-label="Previous page: JLanguageTool使用示例"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./ubuntu.html" class="navigation navigation-next " aria-label="Next page: ubuntu"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search-pro/search-pro.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"search-pro":{"cutWordLib":"nodejieba","defineWord":["vim"]},"github":{"url":"https://github.com/zhangjikai/CodeTemplate"},"sharing":{"weibo":true,"facebook":true,"twitter":true,"google":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

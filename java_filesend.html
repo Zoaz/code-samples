@@ -1,0 +1,1752 @@
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>断点续传 | code</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.4">
+        <meta name="author" content="zhangjikai">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search-pro/search-pro.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="./styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="./java_nio2.html" />
+    
+    
+    <link rel="prev" href="./java_io.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3.2.1"
+        data-chapter-title="断点续传"
+        data-filepath="java_filesend.md"
+        data-basepath="."
+        data-revision="Thu Apr 07 2016 10:33:53 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        前言
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="c.html">
+            
+                
+                    <a href="./c.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        c
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="c_common.html">
+            
+                
+                    <a href="./c_common.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        common
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="c_print_binary.html">
+            
+                
+                    <a href="./c_print_binary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.</b>
+                        
+                        打印二进制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="c_dynamic_array.html">
+            
+                
+                    <a href="./c_dynamic_array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.</b>
+                        
+                        动态定义数组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="c_printf_format.html">
+            
+                
+                    <a href="./c_printf_format.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.</b>
+                        
+                        printf格式化输出
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="c_c_timer.html">
+            
+                
+                    <a href="./c_c_timer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.4.</b>
+                        
+                        程序计时
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="c_common_command.html">
+            
+                
+                    <a href="./c_common_command.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.5.</b>
+                        
+                        解析命名行参数
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="c_io.html">
+            
+                
+                    <a href="./c_io.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        io
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="c_io_text.html">
+            
+                
+                    <a href="./c_io_text.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.1.</b>
+                        
+                        读写文本文件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="c_io_binary.html">
+            
+                
+                    <a href="./c_io_binary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.2.</b>
+                        
+                        读写二进制
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="c_io_stat.html">
+            
+                
+                    <a href="./c_io_stat.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.3.</b>
+                        
+                        获得文件信息
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="c_mic.html">
+            
+                
+                    <a href="./c_mic.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        mic
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="c_mic_helloworld.html">
+            
+                
+                    <a href="./c_mic_helloworld.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.1.</b>
+                        
+                        HelloWorld
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="c_mic_offloadh.html">
+            
+                
+                    <a href="./c_mic_offloadh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.2.</b>
+                        
+                        使用offload.h的api
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="c_mic_varfun.html">
+            
+                
+                    <a href="./c_mic_varfun.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.3.</b>
+                        
+                        定义在mic上使用的全局变量和函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="c_mic_transdata.html">
+            
+                
+                    <a href="./c_mic_transdata.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.4.</b>
+                        
+                        传输数据
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="c_mic_static.html">
+            
+                
+                    <a href="./c_mic_static.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.5.</b>
+                        
+                        传输一维静态数组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="c_mic_static2.html">
+            
+                
+                    <a href="./c_mic_static2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.6.</b>
+                        
+                        传输二维静态数组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="c_mic_pointer.html">
+            
+                
+                    <a href="./c_mic_pointer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.7.</b>
+                        
+                        传输指针
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="c_mic_pointer2.html">
+            
+                
+                    <a href="./c_mic_pointer2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.8.</b>
+                        
+                        传输指针2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="c_mic_struct.html">
+            
+                
+                    <a href="./c_mic_struct.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.9.</b>
+                        
+                        传输结构体
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="c_mic_offload_into.html">
+            
+                
+                    <a href="./c_mic_offload_into.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.10.</b>
+                        
+                        使用into
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="c_mic_allocfree.html">
+            
+                
+                    <a href="./c_mic_allocfree.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.11.</b>
+                        
+                        alloc_if and free_if
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="c_mic_share_varfun.html">
+            
+                
+                    <a href="./c_mic_share_varfun.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.12.</b>
+                        
+                        共享内存: 定义函数和变量
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="c_mic_share_pointer.html">
+            
+                
+                    <a href="./c_mic_share_pointer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.13.</b>
+                        
+                        共享内存: 使用指针
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="c_mic_share_pointer2.html">
+            
+                
+                    <a href="./c_mic_share_pointer2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.14.</b>
+                        
+                        共享内存: 使用二维指针
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="c_mic_sync_compute.html">
+            
+                
+                    <a href="./c_mic_sync_compute.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.15.</b>
+                        
+                        MIC和CPU异步计算
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="c_mic_sync_transfer.html">
+            
+                
+                    <a href="./c_mic_sync_transfer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.16.</b>
+                        
+                        MIC和CPU异步传输数据
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="c_mic_multi_declare.html">
+            
+                
+                    <a href="./c_mic_multi_declare.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.17.</b>
+                        
+                        同时声明多个在MIC上运行的函数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="c_mic_vector_demo.html">
+            
+                
+                    <a href="./c_mic_vector_demo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.18.</b>
+                        
+                        向量化示例
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="openmp.html">
+            
+                
+                    <a href="./openmp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                        openmp
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ompdirective.html">
+            
+                
+                    <a href="./ompdirective.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.1.</b>
+                        
+                        部分指令用法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="omp_clause.html">
+            
+                
+                    <a href="./omp_clause.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.2.</b>
+                        
+                        部分子句用法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="omp_function.html">
+            
+                
+                    <a href="./omp_function.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.3.</b>
+                        
+                        函数用法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="omp_sync.html">
+            
+                
+                    <a href="./omp_sync.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.4.</b>
+                        
+                        同步
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="html.html">
+            
+                
+                    <a href="./html.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        html
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="common.html">
+            
+                
+                    <a href="./common.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        common
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="json_checkbox.html">
+            
+                
+                    <a href="./json_checkbox.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        根据json动态生成checkbox
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="center_content.html">
+            
+                
+                    <a href="./center_content.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        居中显示内容
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="avoid_text.html">
+            
+                
+                    <a href="./avoid_text.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        防止文字环绕
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="clear_float.html">
+            
+                
+                    <a href="./clear_float.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        清除浮动
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="flex.html">
+            
+                
+                    <a href="./flex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        Flex--圣杯布局
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="html5.html">
+            
+                
+                    <a href="./html5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        html5
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.2.1" data-path="preload_image.html">
+            
+                
+                    <a href="./preload_image.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.1.</b>
+                        
+                        预加载图片
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2.2" data-path="canvas_autofit.html">
+            
+                
+                    <a href="./canvas_autofit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.2.</b>
+                        
+                        canvas自适应
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="bootstrap.html">
+            
+                
+                    <a href="./bootstrap.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        bootstrap
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.3.1" data-path="navigation.html">
+            
+                
+                    <a href="./navigation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.1.</b>
+                        
+                        导航菜单
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.2" data-path="switch.html">
+            
+                
+                    <a href="./switch.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.2.</b>
+                        
+                        开关切换
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.3" data-path="toaster.html">
+            
+                
+                    <a href="./toaster.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.3.</b>
+                        
+                        信息提示
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.4" data-path="loading.html">
+            
+                
+                    <a href="./loading.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.4.</b>
+                        
+                        加载
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.5" data-path="fix_footer.html">
+            
+                
+                    <a href="./fix_footer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.5.</b>
+                        
+                        底部固定
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3.6" data-path="bootstrap_modal.html">
+            
+                
+                    <a href="./bootstrap_modal.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.6.</b>
+                        
+                        弹窗
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="jquery.html">
+            
+                
+                    <a href="./jquery.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        jquery
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.4.1" data-path="jquery_qrcode.html">
+            
+                
+                    <a href="./jquery_qrcode.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.1.</b>
+                        
+                        生成二维码
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.2" data-path="jquery_uploadfile.html">
+            
+                
+                    <a href="./jquery_uploadfile.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.2.</b>
+                        
+                        Jquery-upload-file插件使用示例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4.3" data-path="jquery_dom.html">
+            
+                
+                    <a href="./jquery_dom.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.3.</b>
+                        
+                        操作dom
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="java.html">
+            
+                
+                    <a href="./java.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        java
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="java_common.html">
+            
+                
+                    <a href="./java_common.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        common
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="java_c_bwt.html">
+            
+                
+                    <a href="./java_c_bwt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        BWT编码
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="java_c_filesort.html">
+            
+                
+                    <a href="./java_c_filesort.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.2.</b>
+                        
+                        文件内容排序
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="java_encoding.html">
+            
+                
+                    <a href="./java_encoding.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.3.</b>
+                        
+                        文件编码检查
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.4" data-path="java_enum.html">
+            
+                
+                    <a href="./java_enum.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.4.</b>
+                        
+                        枚举使用示例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.5" data-path="java_ip.html">
+            
+                
+                    <a href="./java_ip.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.5.</b>
+                        
+                        获得本机IP地址
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.6" data-path="java_getopt.html">
+            
+                
+                    <a href="./java_getopt.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.6.</b>
+                        
+                        处理命令行参数
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="java_io.html">
+            
+                
+                    <a href="./java_io.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        io
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="3.2.1" data-path="java_filesend.html">
+            
+                
+                    <a href="./java_filesend.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        断点续传
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="java_nio2.html">
+            
+                
+                    <a href="./java_nio2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                        NIO2操作
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="java_nlp.html">
+            
+                
+                    <a href="./java_nlp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        nlp
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="java_languagetool.html">
+            
+                
+                    <a href="./java_languagetool.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        JLanguageTool使用示例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="java_languagerules.html">
+            
+                
+                    <a href="./java_languagerules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                        JLanguageTool 自定义规则示例
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="ubuntu.html">
+            
+                
+                    <a href="./ubuntu.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        ubuntu
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="ubuntu_desktop.html">
+            
+                
+                    <a href="./ubuntu_desktop.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        创建桌面快捷方式
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="ubuntu_shell.html">
+            
+                
+                    <a href="./ubuntu_shell.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        编写shell脚本
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="ubuntu_ssh_login.html">
+            
+                
+                    <a href="./ubuntu_ssh_login.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        配置ssh免密码登录
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="ubuntu_icc.html">
+            
+                
+                    <a href="./ubuntu_icc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        配置icc
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本书使用 GitBook 发布
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >code</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="&#x65AD;&#x70B9;&#x7EED;&#x4F20;">&#x65AD;&#x70B9;&#x7EED;&#x4F20;</h2>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.zhangjikai.utils;
+
+<span class="hljs-keyword">import</span> org.slf4j.Logger;
+<span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;
+<span class="hljs-keyword">import</span> org.springframework.util.MimeTypeUtils;
+<span class="hljs-keyword">import</span> org.springframework.util.StringUtils;
+
+<span class="hljs-keyword">import</span> javax.servlet.ServletOutputStream;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
+<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
+<span class="hljs-keyword">import</span> java.io.*;
+<span class="hljs-keyword">import</span> java.net.URLEncoder;
+<span class="hljs-keyword">import</span> java.nio.file.Files;
+<span class="hljs-keyword">import</span> java.nio.file.Path;
+<span class="hljs-keyword">import</span> java.nio.file.Paths;
+<span class="hljs-keyword">import</span> java.nio.file.attribute.FileTime;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.Arrays;
+<span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-comment">/**
+ * &#x652F;&#x6301;&#x65AD;&#x70B9;&#x7EED;&#x4F20;
+ * &#x4F7F;&#x7528;: MultipartFileSender.fromPath(sourcePath).with(request).with(response).serveResource();
+ *
+ * Created by kevin on 10/02/15.
+ * See full code here : https://github.com/davinkevin/Podcast-Server/blob/d927d9b8cb9ea1268af74316cd20b7192ca92da7/src/main/java/lan/dk/podcastserver/utils/multipart/MultipartFileSender.java
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultipartFileSender</span> </span>{
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> Logger logger = LoggerFactory.getLogger(<span class="hljs-keyword">this</span>.getClass());
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_BUFFER_SIZE = <span class="hljs-number">20480</span>; <span class="hljs-comment">// ..bytes = 20KB.</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> DEFAULT_EXPIRE_TIME = <span class="hljs-number">604800000L</span>; <span class="hljs-comment">// ..ms = 1 week.</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String MULTIPART_BOUNDARY = <span class="hljs-string">&quot;MULTIPART_BYTERANGES&quot;</span>;
+
+    Path filepath;
+    HttpServletRequest request;
+    HttpServletResponse response;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MultipartFileSender</span><span class="hljs-params">()</span> </span>{
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> MultipartFileSender <span class="hljs-title">fromPath</span><span class="hljs-params">(Path path)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MultipartFileSender().setFilepath(path);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> MultipartFileSender <span class="hljs-title">fromFile</span><span class="hljs-params">(File file)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MultipartFileSender().setFilepath(file.toPath());
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> MultipartFileSender <span class="hljs-title">fromURIString</span><span class="hljs-params">(String uri)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MultipartFileSender().setFilepath(Paths.get(uri));
+    }
+
+    <span class="hljs-comment">//** internal setter **//</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> MultipartFileSender <span class="hljs-title">setFilepath</span><span class="hljs-params">(Path filepath)</span> </span>{
+        <span class="hljs-keyword">this</span>.filepath = filepath;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> MultipartFileSender <span class="hljs-title">with</span><span class="hljs-params">(HttpServletRequest httpRequest)</span> </span>{
+        request = httpRequest;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> MultipartFileSender <span class="hljs-title">with</span><span class="hljs-params">(HttpServletResponse httpResponse)</span> </span>{
+        response = httpResponse;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">serveResource</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-keyword">if</span> (response == <span class="hljs-keyword">null</span> || request == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-keyword">if</span> (!Files.exists(filepath)) {
+            logger.error(<span class="hljs-string">&quot;File doesn&apos;t exist at URI : {}&quot;</span>, filepath.toAbsolutePath().toString());
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            <span class="hljs-keyword">return</span>;
+        }
+
+        Long length = Files.size(filepath);
+        String fileName = filepath.getFileName().toString();
+
+        <span class="hljs-keyword">long</span> lastModified = Files.getLastModifiedTime(filepath).toMillis();
+        String eTag = fileName + <span class="hljs-string">&quot;_&quot;</span> + length + <span class="hljs-string">&quot;_&quot;</span> + lastModified;
+        <span class="hljs-keyword">long</span> expires = System.currentTimeMillis() + DEFAULT_EXPIRE_TIME;
+
+        <span class="hljs-comment">//FileTime lastModifiedObj = Files.getLastModifiedTime(filepath);</span>
+
+        <span class="hljs-comment">/*if (StringUtils.isEmpty(fileName) || lastModifiedObj == null) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return;
+        }*/</span>
+        <span class="hljs-comment">//long lastModified = LocalDateTime.ofInstant(lastModifiedObj.toInstant(), ZoneId.of(ZoneOffset.systemDefault().getId())).toEpochSecond(ZoneOffset.UTC);</span>
+        <span class="hljs-comment">//String contentType = MimeTypeUtils.probeContentType(filepath);</span>
+
+        <span class="hljs-comment">// Validate request headers for caching ---------------------------------------------------</span>
+
+        <span class="hljs-comment">// If-None-Match header should contain &quot;*&quot; or ETag. If so, then return 304.</span>
+        String ifNoneMatch = request.getHeader(<span class="hljs-string">&quot;If-None-Match&quot;</span>);
+        <span class="hljs-keyword">if</span> (ifNoneMatch != <span class="hljs-keyword">null</span> &amp;&amp; HttpUtils.matches(ifNoneMatch, fileName)) {
+            response.setHeader(<span class="hljs-string">&quot;ETag&quot;</span>, fileName); <span class="hljs-comment">// Required in 304.</span>
+            response.sendError(HttpServletResponse.SC_NOT_MODIFIED);
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-comment">// If-Modified-Since header should be greater than LastModified. If so, then return 304.</span>
+        <span class="hljs-comment">// This header is ignored if any If-None-Match header is specified.</span>
+        <span class="hljs-keyword">long</span> ifModifiedSince = request.getDateHeader(<span class="hljs-string">&quot;If-Modified-Since&quot;</span>);
+        <span class="hljs-keyword">if</span> (ifNoneMatch == <span class="hljs-keyword">null</span> &amp;&amp; ifModifiedSince != -<span class="hljs-number">1</span> &amp;&amp; ifModifiedSince + <span class="hljs-number">1000</span> &gt; lastModified) {
+            response.setHeader(<span class="hljs-string">&quot;ETag&quot;</span>, fileName); <span class="hljs-comment">// Required in 304.</span>
+            response.sendError(HttpServletResponse.SC_NOT_MODIFIED);
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-comment">// Validate request headers for resume ----------------------------------------------------</span>
+
+        <span class="hljs-comment">// If-Match header should contain &quot;*&quot; or ETag. If not, then return 412.</span>
+        String ifMatch = request.getHeader(<span class="hljs-string">&quot;If-Match&quot;</span>);
+        <span class="hljs-keyword">if</span> (ifMatch != <span class="hljs-keyword">null</span> &amp;&amp; !HttpUtils.matches(ifMatch, fileName)) {
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED);
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-comment">// If-Unmodified-Since header should be greater than LastModified. If not, then return 412.</span>
+        <span class="hljs-keyword">long</span> ifUnmodifiedSince = request.getDateHeader(<span class="hljs-string">&quot;If-Unmodified-Since&quot;</span>);
+        <span class="hljs-keyword">if</span> (ifUnmodifiedSince != -<span class="hljs-number">1</span> &amp;&amp; ifUnmodifiedSince + <span class="hljs-number">1000</span> &lt;= lastModified) {
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED);
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-comment">// Validate and process range -------------------------------------------------------------</span>
+
+        <span class="hljs-comment">// Prepare some variables. The full Range represents the complete file.</span>
+        Range full = <span class="hljs-keyword">new</span> Range(<span class="hljs-number">0</span>, length - <span class="hljs-number">1</span>, length);
+        List&lt;Range&gt; ranges = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+        <span class="hljs-comment">// Validate and process Range and If-Range headers.</span>
+        String range = request.getHeader(<span class="hljs-string">&quot;Range&quot;</span>);
+        <span class="hljs-keyword">if</span> (range != <span class="hljs-keyword">null</span>) {
+
+            <span class="hljs-comment">// Range header should match format &quot;bytes=n-n,n-n,n-n...&quot;. If not, then return 416.</span>
+            <span class="hljs-keyword">if</span> (!range.matches(<span class="hljs-string">&quot;^bytes=\\d*-\\d*(,\\d*-\\d*)*$&quot;</span>)) {
+                response.setHeader(<span class="hljs-string">&quot;Content-Range&quot;</span>, <span class="hljs-string">&quot;bytes */&quot;</span> + length); <span class="hljs-comment">// Required in 416.</span>
+                response.sendError(HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE);
+                <span class="hljs-keyword">return</span>;
+            }
+
+            String ifRange = request.getHeader(<span class="hljs-string">&quot;If-Range&quot;</span>);
+            <span class="hljs-keyword">if</span> (ifRange != <span class="hljs-keyword">null</span> &amp;&amp; !ifRange.equals(fileName)) {
+                <span class="hljs-keyword">try</span> {
+                    <span class="hljs-keyword">long</span> ifRangeTime = request.getDateHeader(<span class="hljs-string">&quot;If-Range&quot;</span>); <span class="hljs-comment">// Throws IAE if invalid.</span>
+                    <span class="hljs-keyword">if</span> (ifRangeTime != -<span class="hljs-number">1</span>) {
+                        ranges.add(full);
+                    }
+                } <span class="hljs-keyword">catch</span> (IllegalArgumentException ignore) {
+                    ranges.add(full);
+                }
+            }
+
+            <span class="hljs-comment">// If any valid If-Range header, then process each part of byte range.</span>
+            <span class="hljs-keyword">if</span> (ranges.isEmpty()) {
+                <span class="hljs-keyword">for</span> (String part : range.substring(<span class="hljs-number">6</span>).split(<span class="hljs-string">&quot;,&quot;</span>)) {
+                    <span class="hljs-comment">// Assuming a file with length of 100, the following examples returns bytes at:</span>
+                    <span class="hljs-comment">// 50-80 (50 to 80), 40- (40 to length=100), -20 (length-20=80 to length=100).</span>
+                    <span class="hljs-keyword">long</span> start = Range.sublong(part, <span class="hljs-number">0</span>, part.indexOf(<span class="hljs-string">&quot;-&quot;</span>));
+                    <span class="hljs-keyword">long</span> end = Range.sublong(part, part.indexOf(<span class="hljs-string">&quot;-&quot;</span>) + <span class="hljs-number">1</span>, part.length());
+
+                    <span class="hljs-keyword">if</span> (start == -<span class="hljs-number">1</span>) {
+                        start = length - end;
+                        end = length - <span class="hljs-number">1</span>;
+                    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (end == -<span class="hljs-number">1</span> || end &gt; length - <span class="hljs-number">1</span>) {
+                        end = length - <span class="hljs-number">1</span>;
+                    }
+
+                    <span class="hljs-comment">// Check if Range is syntactically valid. If not, then return 416.</span>
+                    <span class="hljs-keyword">if</span> (start &gt; end) {
+                        response.setHeader(<span class="hljs-string">&quot;Content-Range&quot;</span>, <span class="hljs-string">&quot;bytes */&quot;</span> + length); <span class="hljs-comment">// Required in 416.</span>
+                        response.sendError(HttpServletResponse.SC_REQUESTED_RANGE_NOT_SATISFIABLE);
+                        <span class="hljs-keyword">return</span>;
+                    }
+
+                    <span class="hljs-comment">// Add range.</span>
+                    ranges.add(<span class="hljs-keyword">new</span> Range(start, end, length));
+                }
+            }
+        }
+
+        <span class="hljs-comment">// Prepare and initialize response --------------------------------------------------------</span>
+
+        <span class="hljs-comment">// Get content type by file name and set content disposition.</span>
+        String disposition = <span class="hljs-string">&quot;inline&quot;</span>;
+
+        <span class="hljs-comment">// If content type is unknown, then set the default value.</span>
+        <span class="hljs-comment">// For all content types, see: http://www.w3schools.com/media/media_mimeref.asp</span>
+        <span class="hljs-comment">// To add new content types, add new mime-mapping entry in web.xml.</span>
+
+        <span class="hljs-comment">//String contentType = Files.probeContentType(filepath);</span>
+        String contentType = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">if</span> (contentType == <span class="hljs-keyword">null</span>) {
+            contentType = <span class="hljs-string">&quot;application/octet-stream&quot;</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!contentType.startsWith(<span class="hljs-string">&quot;image&quot;</span>)) {
+            <span class="hljs-comment">// Else, expect for images, determine content disposition. If content type is supported by</span>
+            <span class="hljs-comment">// the browser, then set to inline, else attachment which will pop a &apos;save as&apos; dialogue.</span>
+            String accept = request.getHeader(<span class="hljs-string">&quot;Accept&quot;</span>);
+            disposition = accept != <span class="hljs-keyword">null</span> &amp;&amp; HttpUtils.accepts(accept, contentType) ? <span class="hljs-string">&quot;inline&quot;</span> : <span class="hljs-string">&quot;attachment&quot;</span>;
+        }
+
+        disposition = <span class="hljs-string">&quot;attachment&quot;</span>;
+        logger.debug(<span class="hljs-string">&quot;Content-Type : {}&quot;</span>, contentType);
+        <span class="hljs-comment">// Initialize response.</span>
+        response.reset();
+        response.setBufferSize(DEFAULT_BUFFER_SIZE);
+        response.setHeader(<span class="hljs-string">&quot;Content-Type&quot;</span>, contentType);
+        response.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>, disposition + <span class="hljs-string">&quot;;filename=\&quot;&quot;</span> + URLEncoder.encode(fileName, <span class="hljs-string">&quot;UTF-8&quot;</span>) + <span class="hljs-string">&quot;\&quot;&quot;</span>);
+        logger.info(disposition);
+        logger.debug(<span class="hljs-string">&quot;Content-Disposition : {}&quot;</span>, disposition);
+        response.setHeader(<span class="hljs-string">&quot;Accept-Ranges&quot;</span>, <span class="hljs-string">&quot;bytes&quot;</span>);
+        response.setHeader(<span class="hljs-string">&quot;ETag&quot;</span>, fileName);
+        response.setDateHeader(<span class="hljs-string">&quot;Last-Modified&quot;</span>, lastModified);
+        response.setDateHeader(<span class="hljs-string">&quot;Expires&quot;</span>, System.currentTimeMillis() + DEFAULT_EXPIRE_TIME);
+
+        <span class="hljs-comment">// Send requested file (part(s)) to client ------------------------------------------------</span>
+
+        <span class="hljs-comment">// Prepare streams.</span>
+        <span class="hljs-keyword">try</span> (InputStream input = <span class="hljs-keyword">new</span> BufferedInputStream(Files.newInputStream(filepath));
+             OutputStream output = response.getOutputStream()) {
+
+            <span class="hljs-keyword">if</span> (ranges.isEmpty() || ranges.get(<span class="hljs-number">0</span>) == full) {
+
+                <span class="hljs-comment">// Return full file.</span>
+                logger.info(<span class="hljs-string">&quot;Return full file&quot;</span>);
+                response.setContentType(contentType);
+                response.setHeader(<span class="hljs-string">&quot;Content-Range&quot;</span>, <span class="hljs-string">&quot;bytes &quot;</span> + full.start + <span class="hljs-string">&quot;-&quot;</span> + full.end + <span class="hljs-string">&quot;/&quot;</span> + full.total);
+                response.setHeader(<span class="hljs-string">&quot;Content-Length&quot;</span>, String.valueOf(full.length));
+                Range.copy(input, output, length, full.start, full.length);
+
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ranges.size() == <span class="hljs-number">1</span>) {
+
+                <span class="hljs-comment">// Return single part of file.</span>
+                Range r = ranges.get(<span class="hljs-number">0</span>);
+                logger.info(<span class="hljs-string">&quot;Return 1 part of file : from ({}) to ({})&quot;</span>, r.start, r.end);
+                response.setContentType(contentType);
+                response.setHeader(<span class="hljs-string">&quot;Content-Range&quot;</span>, <span class="hljs-string">&quot;bytes &quot;</span> + r.start + <span class="hljs-string">&quot;-&quot;</span> + r.end + <span class="hljs-string">&quot;/&quot;</span> + r.total);
+                response.setHeader(<span class="hljs-string">&quot;Content-Length&quot;</span>, String.valueOf(r.length));
+                response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT); <span class="hljs-comment">// 206.</span>
+
+                <span class="hljs-comment">// Copy single part range.</span>
+                Range.copy(input, output, length, r.start, r.length);
+
+            } <span class="hljs-keyword">else</span> {
+
+                <span class="hljs-comment">// Return multiple parts of file.</span>
+                response.setContentType(<span class="hljs-string">&quot;multipart/byteranges; boundary=&quot;</span> + MULTIPART_BOUNDARY);
+                response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT); <span class="hljs-comment">// 206.</span>
+
+                <span class="hljs-comment">// Cast back to ServletOutputStream to get the easy println methods.</span>
+                ServletOutputStream sos = (ServletOutputStream) output;
+
+                <span class="hljs-comment">// Copy multi part range.</span>
+                <span class="hljs-keyword">for</span> (Range r : ranges) {
+                    logger.info(<span class="hljs-string">&quot;Return multi part of file : from ({}) to ({})&quot;</span>, r.start, r.end);
+                    <span class="hljs-comment">// Add multipart boundary and header fields for every range.</span>
+                    sos.println();
+                    sos.println(<span class="hljs-string">&quot;--&quot;</span> + MULTIPART_BOUNDARY);
+                    sos.println(<span class="hljs-string">&quot;Content-Type: &quot;</span> + contentType);
+                    sos.println(<span class="hljs-string">&quot;Content-Range: bytes &quot;</span> + r.start + <span class="hljs-string">&quot;-&quot;</span> + r.end + <span class="hljs-string">&quot;/&quot;</span> + r.total);
+
+                    <span class="hljs-comment">// Copy single part range of multi part range.</span>
+                    Range.copy(input, output, length, r.start, r.length);
+                }
+
+                <span class="hljs-comment">// End with multipart boundary.</span>
+                sos.println();
+                sos.println(<span class="hljs-string">&quot;--&quot;</span> + MULTIPART_BOUNDARY + <span class="hljs-string">&quot;--&quot;</span>);
+            }
+        }
+
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Range</span> </span>{
+        <span class="hljs-keyword">long</span> start;
+        <span class="hljs-keyword">long</span> end;
+        <span class="hljs-keyword">long</span> length;
+        <span class="hljs-keyword">long</span> total;
+
+        <span class="hljs-comment">/**
+         * Construct a byte range.
+         * <span class="hljs-doctag">@param</span> start Start of the byte range.
+         * <span class="hljs-doctag">@param</span> end End of the byte range.
+         * <span class="hljs-doctag">@param</span> total Total length of the byte source.
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Range</span><span class="hljs-params">(<span class="hljs-keyword">long</span> start, <span class="hljs-keyword">long</span> end, <span class="hljs-keyword">long</span> total)</span> </span>{
+            <span class="hljs-keyword">this</span>.start = start;
+            <span class="hljs-keyword">this</span>.end = end;
+            <span class="hljs-keyword">this</span>.length = end - start + <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">this</span>.total = total;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> <span class="hljs-title">sublong</span><span class="hljs-params">(String value, <span class="hljs-keyword">int</span> beginIndex, <span class="hljs-keyword">int</span> endIndex)</span> </span>{
+            String substring = value.substring(beginIndex, endIndex);
+            <span class="hljs-keyword">return</span> (substring.length() &gt; <span class="hljs-number">0</span>) ? Long.parseLong(substring) : -<span class="hljs-number">1</span>;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">copy</span><span class="hljs-params">(InputStream input, OutputStream output, <span class="hljs-keyword">long</span> inputSize, <span class="hljs-keyword">long</span> start, <span class="hljs-keyword">long</span> length)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+            <span class="hljs-keyword">byte</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[DEFAULT_BUFFER_SIZE];
+            <span class="hljs-keyword">int</span> read;
+
+            <span class="hljs-keyword">if</span> (inputSize == length) {
+                <span class="hljs-comment">// Write full range.</span>
+                <span class="hljs-keyword">while</span> ((read = input.read(buffer)) &gt; <span class="hljs-number">0</span>) {
+                    output.write(buffer, <span class="hljs-number">0</span>, read);
+                    output.flush();
+                }
+            } <span class="hljs-keyword">else</span> {
+                input.skip(start);
+                <span class="hljs-keyword">long</span> toRead = length;
+
+                <span class="hljs-keyword">while</span> ((read = input.read(buffer)) &gt; <span class="hljs-number">0</span>) {
+                    <span class="hljs-keyword">if</span> ((toRead -= read) &gt; <span class="hljs-number">0</span>) {
+                        output.write(buffer, <span class="hljs-number">0</span>, read);
+                        output.flush();
+                    } <span class="hljs-keyword">else</span> {
+                        output.write(buffer, <span class="hljs-number">0</span>, (<span class="hljs-keyword">int</span>) toRead + read);
+                        output.flush();
+                        <span class="hljs-keyword">break</span>;
+                    }
+                }
+            }
+        }
+    }
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpUtils</span> </span>{
+
+        <span class="hljs-comment">/**
+         * Returns true if the given accept header accepts the given value.
+         * <span class="hljs-doctag">@param</span> acceptHeader The accept header.
+         * <span class="hljs-doctag">@param</span> toAccept The value to be accepted.
+         * <span class="hljs-doctag">@return</span> True if the given accept header accepts the given value.
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">accepts</span><span class="hljs-params">(String acceptHeader, String toAccept)</span> </span>{
+            String[] acceptValues = acceptHeader.split(<span class="hljs-string">&quot;\\s*(,|;)\\s*&quot;</span>);
+            Arrays.sort(acceptValues);
+
+            <span class="hljs-keyword">return</span> Arrays.binarySearch(acceptValues, toAccept) &gt; -<span class="hljs-number">1</span>
+                    || Arrays.binarySearch(acceptValues, toAccept.replaceAll(<span class="hljs-string">&quot;/.*$&quot;</span>, <span class="hljs-string">&quot;/*&quot;</span>)) &gt; -<span class="hljs-number">1</span>
+                    || Arrays.binarySearch(acceptValues, <span class="hljs-string">&quot;*/*&quot;</span>) &gt; -<span class="hljs-number">1</span>;
+        }
+
+        <span class="hljs-comment">/**
+         * Returns true if the given match header matches the given value.
+         * <span class="hljs-doctag">@param</span> matchHeader The match header.
+         * <span class="hljs-doctag">@param</span> toMatch The value to be matched.
+         * <span class="hljs-doctag">@return</span> True if the given match header matches the given value.
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">matches</span><span class="hljs-params">(String matchHeader, String toMatch)</span> </span>{
+            String[] matchValues = matchHeader.split(<span class="hljs-string">&quot;\\s*,\\s*&quot;</span>);
+            Arrays.sort(matchValues);
+            <span class="hljs-keyword">return</span> Arrays.binarySearch(matchValues, toMatch) &gt; -<span class="hljs-number">1</span>
+                    || Arrays.binarySearch(matchValues, <span class="hljs-string">&quot;*&quot;</span>) &gt; -<span class="hljs-number">1</span>;
+        }
+    }
+}
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./java_io.html" class="navigation navigation-prev " aria-label="Previous page: io"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./java_nio2.html" class="navigation navigation-next " aria-label="Next page: NIO2操作"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search-pro/search-pro.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"search-pro":{"cutWordLib":"nodejieba","defineWord":["vim"]},"github":{"url":"https://github.com/zhangjikai/CodeTemplate"},"sharing":{"weibo":true,"facebook":true,"twitter":true,"google":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
