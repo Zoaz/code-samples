@@ -12,7 +12,10 @@
     - [threeJs](#threeJs)
 + [java](#java)
     - [common](#common-2)
+    - [io](#io)
+    - [npl](#nlp)
     - [Spring](#spring)
+        - [MVC](#mvc)
 + [ubuntu](#ubuntu)
     
 ## c
@@ -91,9 +94,23 @@
 ## java
 ### common
 * [BWTCode.java: BWT编码](java/common/BWTCode.java)
+* [Cpdetector.java: 使用cpdetector检查文件编码方式](java/common/Cpdetector.java)
+* [EnumUse.java: 枚举使用示例](java/common/EnumUse.java)
+* [GetIP.java: 获得主机的ip地址](java/common/GetIP.java)
+* [GnuGetOpt.java: 使用gnu getopt处理命令行参数](java/common/GnuGetOpt.java)
 * [SortFile.java: 将读入的文件一行行的进行排序, 使用TreeMap](java/common/SortFile.java)
 
+
+### io
+* [MultipartFileSender.java: 支持文件断点续传(WEB项目中)](java/io/MultipartFileSender.java)
+* [NioOp.java: NIO2 对文件操作-检查文件存在、获得文件属性、遍历文件夹、重命名、创建文件夹、删除文件](java/io/NioOp.java)
+
+### nlp
+* [JLanguageCheck.java: 使用JLanguageTool 检测文本语法和语义错误, 可自定义规则](java/nlp/JLanguageCheck.java)
+* [rules-en-English.xml: JLanguageTool 自定义规则示例](java/nlp/rules-en-English.xml)
+
 ### Spring
+#### MVC
 * [Spring MVC HelloWolrd](java/spring/mvc/helloworld)
 * [Spring MVC 文件上传简单示例](java/spring/mvc/uploadfile)
 * [Spring MVC 文件上传简单示例--整合bootstrap-fileinput](java/spring/mvc/uploadfile-bootstrap-fileinput)
