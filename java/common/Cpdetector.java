@@ -11,6 +11,9 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
+ * 可以在下面的链接下载jar包
+ * http://download.csdn.net/detail/zhangjk1993/5690601
+ *
  * Created by zhangjk on 2016/1/19.
  */
 public class Cpdetector {
