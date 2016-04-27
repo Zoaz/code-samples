@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-<url> <loc>http://code.zhangjikai.com/common.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://code.zhangjikai.com/flex.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/avoid_text.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/bootstrap.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/bootstrap_modal.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
@@ -37,9 +37,9 @@
 <url> <loc>http://code.zhangjikai.com/canvas_autofit.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/center_content.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/clear_float.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
-<url> <loc>http://code.zhangjikai.com/index.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://code.zhangjikai.com/common.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/fix_footer.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
-<url> <loc>http://code.zhangjikai.com/flex.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://code.zhangjikai.com/index.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/html.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/html5.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/java.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
@@ -69,6 +69,10 @@
 <url> <loc>http://code.zhangjikai.com/ompdirective.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/openmp.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/preload_image.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://code.zhangjikai.com/pthreads.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://code.zhangjikai.com/pthreads_basic.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://code.zhangjikai.com/pthreads_helloworld.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
+<url> <loc>http://code.zhangjikai.com/pthreads_pipeline.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/switch.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/toaster.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>
 <url> <loc>http://code.zhangjikai.com/ubuntu.html</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> </url>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>共享内存: 使用指针 | code</title>
+        <title>pthreads | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./c_mic_share_pointer2.html" />
+    <link rel="next" href="./pthreads_helloworld.html" />
     
     
-    <link rel="prev" href="./c_mic_share_varfun.html" />
+    <link rel="prev" href="./omp_sync.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="1.3.13"
-        data-chapter-title="共享内存: 使用指针"
-        data-filepath="c_mic_share_pointer.md"
+        data-level="1.5"
+        data-chapter-title="pthreads"
+        data-filepath="pthreads.md"
         data-basepath="."
         data-revision="Wed Apr 27 2016 19:57:22 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -458,7 +458,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.13" data-path="c_mic_share_pointer.html">
+        <li class="chapter " data-level="1.3.13" data-path="c_mic_share_pointer.html">
             
                 
                     <a href="./c_mic_share_pointer.html">
@@ -634,7 +634,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="pthreads.html">
+        <li class="chapter active" data-level="1.5" data-path="pthreads.html">
             
                 
                     <a href="./pthreads.html">
@@ -1398,91 +1398,12 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="&#x5171;&#x4EAB;&#x6307;&#x9488;&#x5185;&#x5B58;&#x7BA1;&#x7406;">&#x5171;&#x4EAB;&#x6307;&#x9488;&#x5185;&#x5B58;&#x7BA1;&#x7406;</h2>
-<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
-
-<span class="hljs-comment">/**
- * &#x5171;&#x4EAB;&#x6307;&#x9488;&#x5185;&#x5B58;&#x7BA1;&#x7406;
- */</span> 
-
-<span class="hljs-comment">// share_pointer&#x662F;&#x5171;&#x4EAB;&#x6307;&#x9488;, &#x6CE8;&#x610F;*&#x53F7;&#x662F;&#x5728;_Cilk_shared&#x4E4B;&#x524D;, &#x8BE5;&#x6307;&#x9488;&#x53EA;&#x80FD;&#x6307;&#x5411;&#x5171;&#x4EAB;&#x6570;&#x636E;</span>
-<span class="hljs-comment">// &#x5171;&#x4EAB;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;_Offload_shared_malloc(size_t size) &#x548C; _offload_shared_free(void *p)</span>
-<span class="hljs-comment">// &#x4E0D;&#x8FC7;&#x5728;&#x5171;&#x4EAB;&#x51FD;&#x6570;&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;malloc&#x548C;free&#x4E3A;&#x5171;&#x4EAB;&#x6307;&#x9488;&#x5206;&#x914D;&#x7A7A;&#x95F4;, &#x53C2;&#x89C1;cilk_malloc()</span>
-<span class="hljs-comment">// &#x53E6;&#x5916;&#x5728;mic&#x4E0A;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;_Offload_shared_free &#x91CA;&#x653E;&#x5185;&#x5B58;, &#x9700;&#x8981;&#x5728;host&#x4E0A;&#x8C03;&#x7528;, &#x53C2;&#x89C1;cilk_sharedfree()</span>
-<span class="hljs-comment">//</span>
-<span class="hljs-comment">// int _Cilk_shared *p &#x662F;&#x672C;&#x5730;&#x6307;&#x9488;, &#x53EF;&#x4EE5;&#x6307;&#x5411;&#x5171;&#x4EAB;&#x6570;&#x636E;, &#x5982;&#x679C;&#x76F4;&#x63A5;p = _Offload_share_malloc() &#x4F1A;&#x62A5;warning</span>
-<span class="hljs-comment">// &#x800C;&#x4F7F;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x5F0F;&#x5B9A;&#x4E49;&#x5219;&#x6CA1;&#x6709;&#x95EE;&#x9898;</span>
-<span class="hljs-comment">// typedef int *fp;</span>
-<span class="hljs-comment">// _Cilk_shared fp p;</span>
-<span class="hljs-comment">// p = (fp)_Offload_shared_malloc(sizeof(int) * n);</span>
-<span class="hljs-comment">// _Offload_shared_free(p);</span>
-<span class="hljs-keyword">int</span> *_Cilk_shared share_pointer;
-
-_Cilk_shared <span class="hljs-keyword">int</span> n = <span class="hljs-number">8</span>;
-
-<span class="hljs-comment">// &#x5728;&#x5171;&#x4EAB;&#x51FD;&#x6570;&#x5185;, &#x4F7F;&#x7528;malloc&#x548C;free&#x4E3A;&#x5171;&#x4EAB;&#x53D8;&#x91CF;&#x5206;&#x914D;&#x548C;&#x91CA;&#x653E;&#x5185;&#x5B58;</span>
-_<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> <span class="hljs-title">cilk_malloc</span><span class="hljs-params">()</span> </span>{
-
-    <span class="hljs-keyword">int</span> i;
-    share_pointer = (<span class="hljs-keyword">int</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * n);
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        share_pointer[i] = i;
-    }
-
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;cilk_malloc: share_pointer[%d] is %d\n&quot;</span>, i, share_pointer[i]);
-    }
-    <span class="hljs-built_in">free</span>(share_pointer);
-}
-
-<span class="hljs-comment">// &#x5728;mic&#x4E0A;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x51FD;&#x6570;&#x4F1A;&#x62A5;&#x9519;</span>
-<span class="hljs-comment">// CARD--ERROR:1 thread:3 myoArenaFree: It is not supported to free shared memory from the MIC side!</span>
-_<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> <span class="hljs-title">cilk_sharedfree</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">int</span> i;
-    share_pointer = (<span class="hljs-keyword">int</span> *)_Offload_shared_malloc(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * n);
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        share_pointer[i] = i;
-    }
-
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;cilk_sharedfree: share_pointer[%d] is %d\n&quot;</span>, i, share_pointer[i]);
-    }
-    _Offload_shared_free(share_pointer);
-
-}
-
-
-_<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> <span class="hljs-title">cilk_pointer</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">int</span> i;
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        share_pointer[i] = i;
-    }
-
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;cilk_pointer: share_pointer[%d] is %d\n&quot;</span>, i, share_pointer[i]);
-    }
-}
-
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
-
-    <span class="hljs-comment">//_Cilk_offload cilk_malloc();</span>
-
-    <span class="hljs-comment">//_Cilk_offload cilk_sharedfree();</span>
-
-    <span class="hljs-comment">// &#x4E0B;&#x9762;&#x4E09;&#x6761;&#x8BED;&#x53E5;&#x6267;&#x884C;&#x65F6;&#x4F1A;&#x9519;&#x8BEF;</span>
-    <span class="hljs-comment">//share_pointer =(int *) malloc(sizeof(int) * n);</span>
-    <span class="hljs-comment">//_Cilk_offload cilk_pointer();</span>
-    <span class="hljs-comment">//free(share_pointer);</span>
-
-    <span class="hljs-comment">// &#x4E0B;&#x9762;&#x4E09;&#x6761;&#x8BED;&#x53E5;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x6267;&#x884C;</span>
-    share_pointer = (<span class="hljs-keyword">int</span> *) _Offload_shared_malloc(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * n);
-    _<span class="hljs-function">Cilk_offload <span class="hljs-title">cilk_pointer</span><span class="hljs-params">()</span></span>;
-    _Offload_shared_free(share_pointer);
-
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}
-</code></pre>
+                        <h2 id="pthreads">Pthreads</h2>
+<ul>
+<li><a href="pthreads_helloworld.html">HelloWorld</a></li>
+<li><a href="pthreads_basic.html">&#x57FA;&#x672C;&#x4F7F;&#x7528;&#xFF1A; &#x83B7;&#x5F97;&#x7EBF;&#x7A0B;&#x8FD4;&#x56DE;&#x503C;&#x3001;&#x4E92;&#x65A5;&#x9501;&#x3001;&#x8BBE;&#x7F6E;&#x4E92;&#x65A5;&#x9501;&#x5C5E;&#x6027;&#x3001;&#x6761;&#x4EF6;&#x53D8;&#x91CF;&#x3001;&#x4FE1;&#x53F7;&#x91CF;&#x3001;&#x8BFB;&#x5199;&#x9501;</a></li>
+<li><a href="pthreads_pipeline.html">&#x6D41;&#x6C34;&#x7EBF;&#x6A21;&#x578B;&#x793A;&#x4F8B;</a></li>
+</ul>
 
                     
                     </section>
@@ -1493,10 +1414,10 @@ _<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> 
         </div>
 
         
-        <a href="./c_mic_share_varfun.html" class="navigation navigation-prev " aria-label="Previous page: 共享内存: 定义函数和变量"><i class="fa fa-angle-left"></i></a>
+        <a href="./omp_sync.html" class="navigation navigation-prev " aria-label="Previous page: 同步"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./c_mic_share_pointer2.html" class="navigation navigation-next " aria-label="Next page: 共享内存: 使用二维指针"><i class="fa fa-angle-right"></i></a>
+        <a href="./pthreads_helloworld.html" class="navigation navigation-next " aria-label="Next page: helloworld"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

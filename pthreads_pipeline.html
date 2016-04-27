@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>共享内存: 使用指针 | code</title>
+        <title>流水线模型示例 | code</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.4">
@@ -39,10 +39,10 @@
         
     
     
-    <link rel="next" href="./c_mic_share_pointer2.html" />
+    <link rel="next" href="./html.html" />
     
     
-    <link rel="prev" href="./c_mic_share_varfun.html" />
+    <link rel="prev" href="./pthreads_basic.html" />
     
 
         
@@ -51,9 +51,9 @@
         
         
     <div class="book"
-        data-level="1.3.13"
-        data-chapter-title="共享内存: 使用指针"
-        data-filepath="c_mic_share_pointer.md"
+        data-level="1.5.3"
+        data-chapter-title="流水线模型示例"
+        data-filepath="pthreads_pipeline.md"
         data-basepath="."
         data-revision="Wed Apr 27 2016 19:57:22 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -458,7 +458,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3.13" data-path="c_mic_share_pointer.html">
+        <li class="chapter " data-level="1.3.13" data-path="c_mic_share_pointer.html">
             
                 
                     <a href="./c_mic_share_pointer.html">
@@ -680,7 +680,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.3" data-path="pthreads_pipeline.html">
+        <li class="chapter active" data-level="1.5.3" data-path="pthreads_pipeline.html">
             
                 
                     <a href="./pthreads_pipeline.html">
@@ -1398,89 +1398,241 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h2 id="&#x5171;&#x4EAB;&#x6307;&#x9488;&#x5185;&#x5B58;&#x7BA1;&#x7406;">&#x5171;&#x4EAB;&#x6307;&#x9488;&#x5185;&#x5B58;&#x7BA1;&#x7406;</h2>
+                        <h2 id="&#x6D41;&#x6C34;&#x7EBF;&#x6A21;&#x578B;&#x793A;&#x4F8B;">&#x6D41;&#x6C34;&#x7EBF;&#x6A21;&#x578B;&#x793A;&#x4F8B;</h2>
 <pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdint.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdarg.h&gt;</span></span>
+
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> BUFFER_SIZE <span class="hljs-number">10</span></span>
+<span class="hljs-keyword">uint32_t</span> microseconds = <span class="hljs-number">100</span>;
 
 <span class="hljs-comment">/**
- * &#x5171;&#x4EAB;&#x6307;&#x9488;&#x5185;&#x5B58;&#x7BA1;&#x7406;
- */</span> 
+ * &#x7EBF;&#x7A0B;&#x4FE1;&#x606F;
+ */</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> _thread_info{
+    <span class="hljs-keyword">pthread_t</span> thread_id;
+    <span class="hljs-keyword">pthread_mutex_t</span> lock;
+    <span class="hljs-keyword">pthread_cond_t</span> cond;
+    <span class="hljs-keyword">int</span> run_flag;
+    <span class="hljs-keyword">int</span> buffer_flag;
+    <span class="hljs-keyword">int</span> shutdown;
+} thread_info;
 
-<span class="hljs-comment">// share_pointer&#x662F;&#x5171;&#x4EAB;&#x6307;&#x9488;, &#x6CE8;&#x610F;*&#x53F7;&#x662F;&#x5728;_Cilk_shared&#x4E4B;&#x524D;, &#x8BE5;&#x6307;&#x9488;&#x53EA;&#x80FD;&#x6307;&#x5411;&#x5171;&#x4EAB;&#x6570;&#x636E;</span>
-<span class="hljs-comment">// &#x5171;&#x4EAB;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x5E94;&#x8BE5;&#x4F7F;&#x7528;_Offload_shared_malloc(size_t size) &#x548C; _offload_shared_free(void *p)</span>
-<span class="hljs-comment">// &#x4E0D;&#x8FC7;&#x5728;&#x5171;&#x4EAB;&#x51FD;&#x6570;&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;malloc&#x548C;free&#x4E3A;&#x5171;&#x4EAB;&#x6307;&#x9488;&#x5206;&#x914D;&#x7A7A;&#x95F4;, &#x53C2;&#x89C1;cilk_malloc()</span>
-<span class="hljs-comment">// &#x53E6;&#x5916;&#x5728;mic&#x4E0A;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;_Offload_shared_free &#x91CA;&#x653E;&#x5185;&#x5B58;, &#x9700;&#x8981;&#x5728;host&#x4E0A;&#x8C03;&#x7528;, &#x53C2;&#x89C1;cilk_sharedfree()</span>
-<span class="hljs-comment">//</span>
-<span class="hljs-comment">// int _Cilk_shared *p &#x662F;&#x672C;&#x5730;&#x6307;&#x9488;, &#x53EF;&#x4EE5;&#x6307;&#x5411;&#x5171;&#x4EAB;&#x6570;&#x636E;, &#x5982;&#x679C;&#x76F4;&#x63A5;p = _Offload_share_malloc() &#x4F1A;&#x62A5;warning</span>
-<span class="hljs-comment">// &#x800C;&#x4F7F;&#x7528;&#x4E0B;&#x9762;&#x7684;&#x65B9;&#x5F0F;&#x5B9A;&#x4E49;&#x5219;&#x6CA1;&#x6709;&#x95EE;&#x9898;</span>
-<span class="hljs-comment">// typedef int *fp;</span>
-<span class="hljs-comment">// _Cilk_shared fp p;</span>
-<span class="hljs-comment">// p = (fp)_Offload_shared_malloc(sizeof(int) * n);</span>
-<span class="hljs-comment">// _Offload_shared_free(p);</span>
-<span class="hljs-keyword">int</span> *_Cilk_shared share_pointer;
+<span class="hljs-comment">// &#x7EBF;&#x7A0B;&#x51FD;&#x6570;&#x53C2;&#x6570;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span> _thread_arg {
+    FILE *fp;
+} thread_arg;
 
-_Cilk_shared <span class="hljs-keyword">int</span> n = <span class="hljs-number">8</span>;
 
-<span class="hljs-comment">// &#x5728;&#x5171;&#x4EAB;&#x51FD;&#x6570;&#x5185;, &#x4F7F;&#x7528;malloc&#x548C;free&#x4E3A;&#x5171;&#x4EAB;&#x53D8;&#x91CF;&#x5206;&#x914D;&#x548C;&#x91CA;&#x653E;&#x5185;&#x5B58;</span>
-_<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> <span class="hljs-title">cilk_malloc</span><span class="hljs-params">()</span> </span>{
+thread_info input_info, output_info, cal_input_info, cal_output_info;
+<span class="hljs-keyword">int</span> read_buffer_a[BUFFER_SIZE], read_buffer_b[BUFFER_SIZE];
+<span class="hljs-keyword">int</span> write_buffer_a[BUFFER_SIZE], write_buffer_b[BUFFER_SIZE];
 
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init_resources</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, ...)</span> </span>{
+    va_list arg_ptr ;
     <span class="hljs-keyword">int</span> i;
-    share_pointer = (<span class="hljs-keyword">int</span> *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * n);
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        share_pointer[i] = i;
-    }
+    va_start(arg_ptr, n);
+    thread_info * tmp_info = <span class="hljs-literal">NULL</span>;
 
     <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;cilk_malloc: share_pointer[%d] is %d\n&quot;</span>, i, share_pointer[i]);
+       tmp_info = va_arg(arg_ptr, thread_info *);
+       pthread_mutex_init(&amp;(tmp_info-&gt;lock), <span class="hljs-literal">NULL</span>);
+       pthread_cond_init(&amp;(tmp_info-&gt;cond), <span class="hljs-literal">NULL</span>);
     }
-    <span class="hljs-built_in">free</span>(share_pointer);
+
+    va_end(arg_ptr);
 }
 
-<span class="hljs-comment">// &#x5728;mic&#x4E0A;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x51FD;&#x6570;&#x4F1A;&#x62A5;&#x9519;</span>
-<span class="hljs-comment">// CARD--ERROR:1 thread:3 myoArenaFree: It is not supported to free shared memory from the MIC side!</span>
-_<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> <span class="hljs-title">cilk_sharedfree</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">free_resources</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, ...)</span> </span>{
+    va_list arg_ptr;
     <span class="hljs-keyword">int</span> i;
-    share_pointer = (<span class="hljs-keyword">int</span> *)_Offload_shared_malloc(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * n);
+    va_start(arg_ptr, n);
+    thread_info * tmp_info = <span class="hljs-literal">NULL</span>;
     <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        share_pointer[i] = i;
+        tmp_info = va_arg(arg_ptr, thread_info *);
+        pthread_mutex_destroy(&amp;(tmp_info-&gt;lock));
+        pthread_cond_destroy(&amp;(tmp_info-&gt;cond));
     }
-
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;cilk_sharedfree: share_pointer[%d] is %d\n&quot;</span>, i, share_pointer[i]);
-    }
-    _Offload_shared_free(share_pointer);
-
+    va_end(arg_ptr);
 }
 
-
-_<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> <span class="hljs-title">cilk_pointer</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">void</span> * <span class="hljs-title">input_task</span><span class="hljs-params">(<span class="hljs-keyword">void</span> * args)</span></span>{
+    thread_arg * input_arg = (thread_arg *) args;
     <span class="hljs-keyword">int</span> i;
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        share_pointer[i] = i;
+
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) {
+        pthread_mutex_lock(&amp;(input_info.lock));
+        <span class="hljs-keyword">while</span>(input_info.run_flag == <span class="hljs-number">0</span> &amp;&amp; !input_info.shutdown) {
+            pthread_cond_wait(&amp;(input_info.cond), &amp;(input_info.lock));
+        }
+        <span class="hljs-keyword">if</span>(input_info.shutdown) {
+            <span class="hljs-keyword">break</span>;
+        }
+        input_info.run_flag = <span class="hljs-number">0</span>;
+        input_info.buffer_flag = <span class="hljs-number">1</span> - input_info.buffer_flag;
+        pthread_mutex_unlock(&amp;(input_info.lock));
+
+        <span class="hljs-keyword">if</span>(input_info.buffer_flag) {
+            <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; BUFFER_SIZE; i++) {
+                <span class="hljs-built_in">fscanf</span>(input_arg-&gt;fp, <span class="hljs-string">&quot;%d&quot;</span>, read_buffer_a + i);
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; BUFFER_SIZE; i++) {
+                <span class="hljs-built_in">fscanf</span>(input_arg-&gt;fp, <span class="hljs-string">&quot;%d&quot;</span>, read_buffer_b + i);
+            }
+        }
+
+        pthread_mutex_lock(&amp;(cal_input_info.lock));
+        cal_input_info.run_flag = <span class="hljs-number">1</span>;
+        pthread_cond_signal(&amp;(cal_input_info.cond));
+        pthread_mutex_unlock(&amp;(cal_input_info.lock));
     }
 
-    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; n; i++) {
-        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;cilk_pointer: share_pointer[%d] is %d\n&quot;</span>, i, share_pointer[i]);
-    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
 }
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-function"><span class="hljs-keyword">void</span> * <span class="hljs-title">output_task</span><span class="hljs-params">(<span class="hljs-keyword">void</span> * args)</span></span>{
+    thread_arg * output_arg = (thread_arg *) args;
+    <span class="hljs-keyword">int</span> i;
 
-    <span class="hljs-comment">//_Cilk_offload cilk_malloc();</span>
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) {
+        pthread_mutex_lock(&amp;(output_info.lock));
+        <span class="hljs-keyword">while</span>(output_info.run_flag == <span class="hljs-number">0</span> &amp;&amp; !output_info.shutdown) {
+            pthread_cond_wait(&amp;(output_info.cond), &amp;(output_info.lock));
+        }
+        <span class="hljs-keyword">if</span>(output_info.shutdown) {
+            <span class="hljs-keyword">break</span>;
+        }
+        output_info.run_flag = <span class="hljs-number">0</span>;
+        output_info.buffer_flag = <span class="hljs-number">1</span> - output_info.buffer_flag;
+        pthread_mutex_unlock(&amp;(output_info.lock));
 
-    <span class="hljs-comment">//_Cilk_offload cilk_sharedfree();</span>
+        <span class="hljs-keyword">if</span>(output_info.buffer_flag) {
+            <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; BUFFER_SIZE; i++) {
+                <span class="hljs-built_in">fprintf</span>(output_arg-&gt;fp, <span class="hljs-string">&quot;%d\n&quot;</span>, write_buffer_a[i]);
+                usleep(microseconds);
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; BUFFER_SIZE; i++) {
+                <span class="hljs-built_in">fprintf</span>(output_arg-&gt;fp, <span class="hljs-string">&quot;%d\n&quot;</span>, write_buffer_b[i]);
+                usleep(microseconds);
+            }
+        }
 
-    <span class="hljs-comment">// &#x4E0B;&#x9762;&#x4E09;&#x6761;&#x8BED;&#x53E5;&#x6267;&#x884C;&#x65F6;&#x4F1A;&#x9519;&#x8BEF;</span>
-    <span class="hljs-comment">//share_pointer =(int *) malloc(sizeof(int) * n);</span>
-    <span class="hljs-comment">//_Cilk_offload cilk_pointer();</span>
-    <span class="hljs-comment">//free(share_pointer);</span>
+        pthread_mutex_lock(&amp;(cal_output_info.lock));
+        cal_output_info.run_flag = <span class="hljs-number">1</span>;
+        pthread_cond_signal(&amp;(cal_output_info.cond));
+        pthread_mutex_unlock(&amp;(cal_output_info.lock));
 
-    <span class="hljs-comment">// &#x4E0B;&#x9762;&#x4E09;&#x6761;&#x8BED;&#x53E5;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x6267;&#x884C;</span>
-    share_pointer = (<span class="hljs-keyword">int</span> *) _Offload_shared_malloc(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>) * n);
-    _<span class="hljs-function">Cilk_offload <span class="hljs-title">cilk_pointer</span><span class="hljs-params">()</span></span>;
-    _Offload_shared_free(share_pointer);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
 
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    FILE *fp_input, *fp_output;
+    <span class="hljs-keyword">char</span> *input_name = <span class="hljs-string">&quot;input.txt&quot;</span>;
+    <span class="hljs-keyword">char</span> *output_name = <span class="hljs-string">&quot;output.txt&quot;</span>;
+    <span class="hljs-keyword">int</span> total_nums = <span class="hljs-number">100</span>;
+    <span class="hljs-keyword">int</span> loop_nums = total_nums / BUFFER_SIZE;
+    <span class="hljs-keyword">int</span> loop_index = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> i;
+    thread_arg input_arg, output_arg;
+
+    <span class="hljs-keyword">if</span>((fp_input = fopen(input_name, <span class="hljs-string">&quot;r&quot;</span>)) == <span class="hljs-literal">NULL</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;can&apos;t load input file\n&quot;</span>);
+        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);
+    }
+
+    <span class="hljs-keyword">if</span>((fp_output = fopen(output_name, <span class="hljs-string">&quot;w+&quot;</span>)) == <span class="hljs-literal">NULL</span>) {
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;can&apos;t load output file\n&quot;</span>);
+        <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>);
+    }
+
+    input_arg.fp = fp_input;
+    output_arg.fp = fp_output;
+
+    init_resources(<span class="hljs-number">4</span>, &amp;input_info, &amp;output_info, &amp;cal_input_info, &amp;cal_output_info);
+    input_info.buffer_flag = output_info.buffer_flag = cal_input_info.buffer_flag = <span class="hljs-number">0</span>;
+    input_info.run_flag = cal_output_info.run_flag = <span class="hljs-number">1</span>;
+    output_info.run_flag = cal_input_info.run_flag = <span class="hljs-number">0</span>;
+    input_info.shutdown = output_info.shutdown = <span class="hljs-number">0</span>;
+
+    pthread_create(&amp;(input_info.thread_id), <span class="hljs-literal">NULL</span>, input_task, &amp;input_arg);
+    pthread_create(&amp;(output_info.thread_id), <span class="hljs-literal">NULL</span>, output_task, &amp;output_arg);
+
+    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) {
+        pthread_mutex_lock(&amp;(cal_input_info.lock));
+        <span class="hljs-keyword">while</span>(cal_input_info.run_flag == <span class="hljs-number">0</span>) {
+            pthread_cond_wait(&amp;(cal_input_info.cond), &amp;(cal_input_info.lock));
+        }
+        cal_input_info.buffer_flag = <span class="hljs-number">1</span> - cal_input_info.buffer_flag;
+        cal_input_info.run_flag = <span class="hljs-number">0</span>;
+        pthread_mutex_unlock(&amp;(cal_input_info.lock));
+
+        pthread_mutex_lock(&amp;(input_info.lock));
+        <span class="hljs-keyword">if</span>(loop_index == loop_nums - <span class="hljs-number">1</span>) {
+            input_info.shutdown = <span class="hljs-number">1</span>;
+        } 
+        input_info.run_flag = <span class="hljs-number">1</span>;
+        pthread_cond_signal(&amp;(input_info.cond));
+        pthread_mutex_unlock(&amp;(input_info.lock));
+
+        <span class="hljs-keyword">if</span>(cal_input_info.buffer_flag) {
+            <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; BUFFER_SIZE; i++) {
+                write_buffer_a[i] = read_buffer_a[i] + <span class="hljs-number">1</span>;
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i &lt; BUFFER_SIZE; i++) {
+                write_buffer_b[i] = read_buffer_b[i] + <span class="hljs-number">1</span>;
+            }
+        }
+
+        pthread_mutex_lock(&amp;(cal_output_info.lock));
+        <span class="hljs-keyword">while</span>(cal_output_info.run_flag == <span class="hljs-number">0</span>) {
+            pthread_cond_wait(&amp;(cal_output_info.cond), &amp;(cal_output_info.lock));
+        }
+        cal_output_info.run_flag = <span class="hljs-number">0</span>;
+        pthread_mutex_unlock(&amp;(cal_output_info.lock));
+
+        pthread_mutex_lock(&amp;(output_info.lock));
+        output_info.run_flag = <span class="hljs-number">1</span>;
+        pthread_cond_signal(&amp;(output_info.cond));
+        pthread_mutex_unlock(&amp;(output_info.lock));
+
+        <span class="hljs-keyword">if</span>(loop_index == loop_nums - <span class="hljs-number">1</span>) {
+            <span class="hljs-keyword">break</span>;
+        }
+        loop_index++;
+
+    }
+    pthread_mutex_lock(&amp;(cal_output_info.lock));
+    <span class="hljs-keyword">while</span>(cal_output_info.run_flag == <span class="hljs-number">0</span>) {
+        pthread_cond_wait(&amp;(cal_output_info.cond), &amp;(cal_output_info.lock));
+    }
+    cal_output_info.run_flag = <span class="hljs-number">0</span>;
+    pthread_mutex_unlock(&amp;(cal_output_info.lock));
+
+    pthread_mutex_lock(&amp;(output_info.lock));
+    output_info.run_flag = <span class="hljs-number">1</span>;
+    output_info.shutdown = <span class="hljs-number">1</span>;
+    pthread_cond_signal(&amp;(output_info.cond));
+    pthread_mutex_unlock(&amp;(output_info.lock));
+
+
+    pthread_join(input_info.thread_id, <span class="hljs-literal">NULL</span>);
+    pthread_join(output_info.thread_id, <span class="hljs-literal">NULL</span>);
+
+    free_resources(<span class="hljs-number">4</span>, &amp;input_info, &amp;output_info, &amp;cal_input_info, &amp;cal_output_info);
+    fclose(fp_input);
+    fclose(fp_output);
+
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; 
 }
 </code></pre>
 
@@ -1493,10 +1645,10 @@ _<span class="hljs-function">Cilk_shared <span class="hljs-keyword">void</span> 
         </div>
 
         
-        <a href="./c_mic_share_varfun.html" class="navigation navigation-prev " aria-label="Previous page: 共享内存: 定义函数和变量"><i class="fa fa-angle-left"></i></a>
+        <a href="./pthreads_basic.html" class="navigation navigation-prev " aria-label="Previous page: 基本使用"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./c_mic_share_pointer2.html" class="navigation navigation-next " aria-label="Next page: 共享内存: 使用二维指针"><i class="fa fa-angle-right"></i></a>
+        <a href="./html.html" class="navigation navigation-next " aria-label="Next page: html"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
