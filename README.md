@@ -4,6 +4,7 @@
     - [io](#io)
     - [mic](#mic)
     - [openmp](#openmp)
+    - [pthreads](#pthreads)
 + [html](#html)
     - [common](#common-1)
     - [bootstrap](#bootstrap)
@@ -57,6 +58,11 @@
 * [shared, private, default, firstprivate, lastprivate, nowait, schedule, if, reduction, copyin, copyprivate, num_threads 子句用法](c/openmp/omp_clause.c)
 * [openmp函数用法](c/openmp/omp_function.md)
 * [同步相关指令和函数, 包括barrier, ordered, critical, atomic, lock](c/openmp/omp_sync.c)
+
+### pthreads
+* [helloworld.c: HelloWorld示例](c/pthreads/helloworld.c) 
+* [basic_use.c: 基本用法--包括获得线程返回值、互斥锁、设置互斥锁属性、条件变量、信号量、读写锁](c/pthreads/basic_use.c)
+* [流水线模型(Pipeline Model)示例](https://github.com/zhangjikai/Pthreads-Pipeline-Demo)
 
 ## html 
 ### common
