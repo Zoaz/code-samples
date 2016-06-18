@@ -18,6 +18,10 @@
     - [Spring](#spring)
         - [MVC](#mvc)
 + [ubuntu](#ubuntu)
+
+---
+比较完整的代码示例
++ [SpringMVC + MyBatis + AngularJs + Bootstrap整合的一个登录注册示例](https://github.com/zhangjikai/samples/tree/master/spring-mybatis-login/login)
     
 ## c
 ### common
