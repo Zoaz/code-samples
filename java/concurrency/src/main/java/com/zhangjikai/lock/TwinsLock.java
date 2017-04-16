@@ -37,11 +37,11 @@ public class TwinsLock implements Lock {
         }
 
         @Override
-        protected boolean tryReleaseShared(int returnCount) {
+        protected boolean tryReleaseShared(int releases) {
             // 释放共享资源，因为可能有多个线程同时执行，所以需要使用 CAS 操作来修改资源总数。
             for (; ; ) {
                 int lastCount = getState();
-                int newCount = lastCount + returnCount;
+                int newCount = lastCount + releases;
                 if (compareAndSetState(lastCount, newCount)) {
                     return true;
                 }

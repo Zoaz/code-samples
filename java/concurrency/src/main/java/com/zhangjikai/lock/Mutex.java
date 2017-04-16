@@ -2,6 +2,7 @@ package com.zhangjikai.lock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedLongSynchronizer;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
@@ -13,7 +14,7 @@ import java.util.concurrent.locks.Lock;
 public class Mutex implements Lock {
 
     // 通过继承 AQS，自定义同步器
-    private static class Sync extends AbstractQueuedLongSynchronizer {
+    private static class Sync extends AbstractQueuedSynchronizer {
 
         // 当前线程是否被独占
         @Override
@@ -24,7 +25,7 @@ public class Mutex implements Lock {
 
         // 尝试获得锁
         @Override
-        protected boolean tryAcquire(long arg) {
+        protected boolean tryAcquire(int arg) {
             // 只有当 state 的值为 0，并且线程成功将 state 值修改为 1 之后，线程才可以获得独占锁
             if (compareAndSetState(0, 1)) {
                 setExclusiveOwnerThread(Thread.currentThread());
@@ -35,7 +36,7 @@ public class Mutex implements Lock {
         }
 
         @Override
-        protected boolean tryRelease(long arg) {
+        protected boolean tryRelease(int arg) {
             // state 为 0 说明当前同步块中没有锁了，无需释放
             if (getState() == 0) {
                 throw new IllegalMonitorStateException();
@@ -160,3 +161,6 @@ public class Mutex implements Lock {
 
     }
 }
+
+
+
