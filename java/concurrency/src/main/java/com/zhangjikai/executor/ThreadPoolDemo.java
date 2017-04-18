@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by Jikai Zhang on 2017/4/17.
  */
-public class FirstDemo {
+public class ThreadPoolDemo {
 
     static class WorkThread implements Runnable {
 
