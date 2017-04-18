@@ -16,5 +16,6 @@ public class TestFinal {
     public static void main(String[] args) {
         TestFinal testFinal = new TestFinalChild();
         testFinal.print();
+        System.out.println(Runtime.getRuntime().availableProcessors());
     }
 }
