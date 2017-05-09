@@ -25,10 +25,10 @@ public class ChannelDemo {
             while (byteRead != -1) {
                 System.out.println("Read: " + byteRead);
                 buf.flip();
-                /*while (buf.hasRemaining()) {
-                    System.out.println((char)buf.get());
-                }*/
-                System.out.println(buf.get());
+                while (buf.hasRemaining()) {
+                    //System.out.println(buf.getChar());
+                }
+                //System.out.println(buf.getChar());
                 buf.clear();
                 byteRead = fileChannel.read(buf);
             }
