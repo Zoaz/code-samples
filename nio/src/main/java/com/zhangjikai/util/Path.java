@@ -7,6 +7,8 @@ import java.io.File;
  */
 public class Path {
     public static String fullPath(String name) {
-        return new File(Path.class.getClassLoader().getResource(name).getFile()).getAbsolutePath();
+        //System.out.println(System.getProperty("user.dir"));
+        return System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator +  "resources" + File.separator + name;
+        //return new File(Path.class.getClassLoader().getResource(name).getFile()).getAbsolutePath();
     }
 }

@@ -1,11 +1,9 @@
-package com.zhangjikai.nio;
+package com.zhangjikai.basic;
 
 import com.zhangjikai.util.Path;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
@@ -39,7 +37,7 @@ public class ChannelTransfer {
             long count = fromChannel.size();
             System.out.println(count);
             toChannel.transferFrom(fromChannel, position, count);
-           
+
 
         } catch (IOException e) {
             e.printStackTrace();
