@@ -24,7 +24,7 @@ public class ChannelDemo {
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(filePath, "rw")) {
             FileChannel fileChannel = randomAccessFile.getChannel();
 
-            ByteBuffer byteBuffer = ByteBuffer.allocate(bufferSize).order(ByteOrder.BIG_ENDIAN);
+            ByteBuffer byteBuffer = ByteBuffer.allocate(bufferSize);
             CharBuffer charBuffer = CharBuffer.allocate(bufferSize);
             int byteRead = fileChannel.read(byteBuffer);
 
