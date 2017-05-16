@@ -24,6 +24,7 @@ public class SocketServer {
         channel.register(selector, SelectionKey.OP_ACCEPT);
 
         while (true) {
+            //System.out.println(1111);
             selector.select();
             Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
             while (iterator.hasNext()) {
