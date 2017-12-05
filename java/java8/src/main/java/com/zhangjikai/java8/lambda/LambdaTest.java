@@ -1,16 +1,39 @@
 package com.zhangjikai.java8.lambda;
 
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Jikai Zhang
  * @date 2017/12/4.
  */
+
+
+@FunctionalInterface
+interface Larger<T> {
+    int large(T t, T t2);
+}
+
+@FunctionalInterface
+interface ThrowExceptionInterface {
+    void run(int a, int b) throws IOException;
+}
+
+@FunctionalInterface
+interface VoidInterface {
+    void run(int a);
+}
+
 public class LambdaTest {
 
     public static void main(String[] args) {
         Integer a = 10;
         Integer b = 11;
         run(a, b, (t, t2) -> t.compareTo(t2));
+        throwException();
     }
 
     public static <T> void run(T t, T t2, Larger<T> larger) {
@@ -28,10 +51,15 @@ public class LambdaTest {
         };
     }
 
+    public static void throwException() {
+        ThrowExceptionInterface t = (int a, int b) -> {
+            throw new IOException();
+        };
+    }
 
+    public static void voidTest() {
+        List<String> list = new ArrayList<>();
+        VoidInterface v = a -> a++;
+    }
 }
 
-@FunctionalInterface
-interface Larger<T> {
-    int large(T t, T t2);
-}
