@@ -91,4 +91,21 @@ public class StreamOperation {
         List<Integer> results2 = Arrays.stream(array).flatMap(Arrays::stream).distinct().collect(Collectors.toList());
         results2.forEach(System.out::println);
     }
+
+    @Test
+    public void useReduce() {
+        Integer[] numbers = new Integer[] {1, 2, 4, 6, 10};
+
+        // 求和
+        int sum = Arrays.stream(numbers).reduce(0, Integer::sum);
+        System.out.println(sum);
+
+        // 求最大值
+        Optional<Integer> o = Arrays.stream(numbers).reduce(Integer::max);
+        System.out.println(o.get());
+
+        // 求最小值
+        o = Arrays.stream(numbers).reduce(Integer::min);
+        System.out.println(o.get());
+    }
 }
