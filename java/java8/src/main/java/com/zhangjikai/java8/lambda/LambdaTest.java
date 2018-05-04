@@ -4,9 +4,9 @@ package com.zhangjikai.java8.lambda;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
- *
  * @author Jikai Zhang
  * @date 2017/12/4.
  */
@@ -28,21 +28,21 @@ interface VoidInterface {
 }
 
 public class LambdaTest {
-
+    
     public static void main(String[] args) {
         Integer a = 10;
         Integer b = 11;
         run(a, b, (t, t2) -> t.compareTo(t2));
         throwException();
     }
-
+    
     public static <T> void run(T t, T t2, Larger<T> larger) {
         System.out.println(larger.large(t, t2));
     }
-
+    
     public void demo() {
         Calculator c = (int a, int b) -> a + b;
-
+        
         Calculator c2 = new Calculator() {
             @Override
             public int cal(int a, int b) {
@@ -50,16 +50,28 @@ public class LambdaTest {
             }
         };
     }
-
+    
     public static void throwException() {
         ThrowExceptionInterface t = (int a, int b) -> {
             throw new IOException();
         };
     }
-
+    
     public static void voidTest() {
         List<String> list = new ArrayList<>();
         VoidInterface v = a -> a++;
     }
+    
+    
+    //Even better
+    public static void filter(List<String> names, Predicate<String> condition) {
+        names.stream().filter((name) -> (condition.test(name)))
+                .forEach((name) -> {
+                            System.out.println(name + " ");
+                        }
+                );
+    }
+    
+    
 }
 
