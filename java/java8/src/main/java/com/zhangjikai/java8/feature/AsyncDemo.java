@@ -1,9 +1,7 @@
 package com.zhangjikai.java8.feature;
 
 import java.util.Random;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 /**
  * @author Jikai Zhang
@@ -61,17 +59,19 @@ public class AsyncDemo {
                 .thenCombine(CompletableFuture.supplyAsync(AsyncDemo::calIntPrice), (x, y) -> x + "-" + y);
         System.out.println(strFuture.get());
         
-        // CompletableFuture<Double> futurePrice = new CompletableFuture<>();
-        // Executors.newSingleThreadExecutor().execute(() -> {
-        //     try {
-        //         double price = calPrice();
-        //         futurePrice.complete(price);
-        //     } catch (Exception e) {
-        //         futurePrice.completeExceptionally(e);
-        //     }
-        // });
-        // return futurePrice;
+        // 使用自定义线程池
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        future = CompletableFuture.supplyAsync(AsyncDemo::calPrice, service);
+        System.out.println(future.get());
+        service.shutdown();
         
+        // allOf 等待所有的 future 完成, anyOf 等待任何一个完成
+        // CompletableFuture[] futures = findPricesStream("myPhone").
+        //         map(f -> f.thenAccept(System.out::println))
+        //         .toArray(size -> newCompletableFuture[size]);
+        // CompletableFuture.allOf(futures).join();
+        
+       
     }
     
     public static Future<Integer> getAndConvertPrice() {
