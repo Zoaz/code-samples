@@ -19,4 +19,13 @@ public class Timer {
         System.out.println("运行时间：" + usedTime + "ms");
         startTimeLocal.remove();
     }
+    
+    public static void end(boolean removeStart) {
+        long endTime = System.currentTimeMillis();
+        long usedTime = endTime - startTimeLocal.get();
+        System.out.println("运行时间：" + usedTime + "ms");
+        if (removeStart) {
+            startTimeLocal.remove();
+        }
+    }
 }
