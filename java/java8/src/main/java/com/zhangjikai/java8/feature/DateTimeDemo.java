@@ -46,11 +46,6 @@ public class DateTimeDemo {
         
         // 将字符串转为日期
         date = LocalDate.parse("2018-03-18");
-        
-        long epochTime = Instant.now().getEpochSecond();
-        System.out.println(epochTime);
-        
-        
     }
     
     public static void advanced() {
@@ -133,12 +128,15 @@ public class DateTimeDemo {
         ZonedDateTime americaTime = time.atZone(americaZone);
         System.out.println(americaTime);
         
+        
         // 使用时区的时间差值
         ZoneOffset newYorkOffset = ZoneOffset.of("-05:00");
         OffsetDateTime dateTimeNewYork = OffsetDateTime.of(LocalDateTime.now(), newYorkOffset);
         System.out.println(dateTimeNewYork);
         
-        
+        ZoneId chinaId = ZoneId.of("Asia/Shanghai");
+        ZonedDateTime chinaDateTime = dateTimeNewYork.atZoneSameInstant(chinaId);
+        System.out.println(chinaDateTime);
     }
     
     public static void main(String[] args) {
